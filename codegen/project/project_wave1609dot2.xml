@@ -1,4 +1,17 @@
-<main script="main.gsl" work_path="generated/main" echo_level="trace">
+<project
+        name="wave1609dot2"
+        brief="Virgil Security implementation of the standard IEEE 1609.2"
+        namespace="virgil"
+        prefix="vscw"
+        path="../library/wave1609dot2/"
+        inc_path="../library/wave1609dot2/include/virgil/wave1609dot2/"
+        inc_private_path="../library/wave1609dot2/include/virgil/wave1609dot2/private/"
+        src_path="../library/wave1609dot2/src/"
+        work_path="generated/wave1609dot2/"
+        >
+
+    <version major="0" minor="1" patch="0" />
+
     <license>
         Copyright (C) 2015-2018 Virgil Security Inc.
 
@@ -35,10 +48,8 @@
         Lead Maintainer: Virgil Security Inc. &lt;support@virgilsecurity.com&gt;
     </license>
 
-    <external library="mbedtls"/>
-
-    <project name="common"/>
-    <project name="foundation"/>
-    <project name="pythia"/>
-    <project name="wave1609dot2"/>
-</main>
+    <module name="assert"/>
+    <module name="wave1609dot2 error"/>
+    <module name="library"/>
+    <module name="memory"/>
+</project>

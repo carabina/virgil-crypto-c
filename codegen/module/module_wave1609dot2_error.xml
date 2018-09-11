@@ -1,0 +1,15 @@
+<module name="error">
+     Manages wave1609dot2 error codes.
+
+    <enum name="error" definition="public">
+        Defines pythia error codes.
+
+        <constant name="success" of_class="global" value="0">
+            No errors was occurred.
+        </constant>
+
+        <constant name="bad arguments" value="-1">
+            This error should not be returned if assertions is enabled.
+        </constant>
+    </enum>
+</module>
