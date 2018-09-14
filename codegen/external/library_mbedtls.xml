@@ -28,6 +28,40 @@
 
     <feature name="GENPRIME"/>
 
+    <feature name="PEM_PARSE_C"/>
+
+    <feature name="BASE64 C"/>
+
+    <feature name="PK_C"/>
+
+    <feature name="ECP C"/>
+
+    <feature name="PK_PARSE_C"/>
+
+    <feature name="ECP_DP_SECP256R1_ENABLED"/>
+
+    <feature name="ECP_DP_BP256R1_ENABLED"/>
+
+    <feature name="CERTS_C"/>
+
+    <feature name="ECDH_C"/>
+
+    <feature name="ECDSA_C"/>
+
+    <feature name="X509_USE_C"/>
+
+    <feature name="X509_CRT_PARSE_C"/>
+
+    <feature name="X509_CRL_PARSE_C"/>
+
+    <feature name="X509_CHECK_KEY_USAGE"/>
+
+    <feature name="X509_CHECK_EXTENDED_KEY_USAGE"/>
+
+    <feature name="X509_RSASSA_PSS_SUPPORT"/>
+
+    <feature name="WAVE1609 DOT 2 KERNEL"/>
+
     <feature name="RSA C">
         <require feature="BIGNUM C"/>
         <require feature="OID C"/>

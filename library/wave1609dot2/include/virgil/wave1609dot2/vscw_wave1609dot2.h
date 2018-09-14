@@ -46,11 +46,14 @@
 
 //  @description
 // --------------------------------------------------------------------------
-//  Manages wave1609dot2 error codes.
+//  Provide wave1609dot2 implementation based on the Virgil Security.
 // --------------------------------------------------------------------------
 
-#ifndef VSCW_ERROR_H_INCLUDED
-#define VSCW_ERROR_H_INCLUDED
+#ifndef VSCW_WAVE1609DOT2_H_INCLUDED
+#define VSCW_WAVE1609DOT2_H_INCLUDED
+
+#include "vscw_library.h"
+#include "vscw_error.h"
 //  @end
 
 
@@ -66,27 +69,61 @@ extern "C" {
 // --------------------------------------------------------------------------
 
 //
-//  Defines pythia error codes.
+//  Handle 'wave1609dot2' context.
 //
-enum vscw_error_t {
-    //
-    //  No errors was occurred.
-    //
-    vscw_SUCCESS = 0,
-    //
-    //  This error should not be returned if assertions is enabled.
-    //
-    vscw_error_BAD_ARGUMENTS = -1,
-    //
-    //  Memory allocation failed.
-    //
-    vscw_error_NO_MEMORY = -100,
-    //
-    //  Undrlying wave1609dot2 library returns -1.
-    //
-    vscw_error_WAVE1609DOT2_INNER_FAIL = -200
-};
-typedef enum vscw_error_t vscw_error_t;
+typedef struct vscw_wave1609dot2_t vscw_wave1609dot2_t;
+
+//
+//  Return size of 'vscw_wave1609dot2_t'.
+//
+VSCW_PUBLIC size_t
+vscw_wave1609dot2_ctx_size(void);
+
+//
+//  Perform initialization of pre-allocated context.
+//
+VSCW_PUBLIC void
+vscw_wave1609dot2_init(vscw_wave1609dot2_t *wave1609dot2_ctx);
+
+//
+//  Release all inner resources.
+//
+VSCW_PUBLIC void
+vscw_wave1609dot2_cleanup(vscw_wave1609dot2_t *wave1609dot2_ctx);
+
+//
+//  Allocate context and perform it's initialization.
+//
+VSCW_PUBLIC vscw_wave1609dot2_t *
+vscw_wave1609dot2_new(void);
+
+//
+//  Release all inner resorces and deallocate context if needed.
+//  It is safe to call this method even if context was allocated by the caller.
+//
+VSCW_PUBLIC void
+vscw_wave1609dot2_delete(vscw_wave1609dot2_t *wave1609dot2_ctx);
+
+//
+//  Delete given context and nullifies reference.
+//  This is a reverse action of the function 'vscw_wave1609dot2_new ()'.
+//
+VSCW_PUBLIC void
+vscw_wave1609dot2_destroy(vscw_wave1609dot2_t **wave1609dot2_ctx_ref);
+
+//
+//  Performs global initialization of the wave1609dot2 library.
+//  Must be called once for entire application at startup.
+//
+VSCW_PUBLIC void
+vscw_init(void);
+
+//
+//  Performs global cleanup of the wave1609dot2 library.
+//  Must be called once for entire application before exit.
+//
+VSCW_PUBLIC void
+vscw_cleanup(void);
 
 
 // --------------------------------------------------------------------------
@@ -102,5 +139,5 @@ typedef enum vscw_error_t vscw_error_t;
 
 
 //  @footer
-#endif // VSCW_ERROR_H_INCLUDED
+#endif // VSCW_WAVE1609DOT2_H_INCLUDED
 //  @end

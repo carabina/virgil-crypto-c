@@ -36,6 +36,12 @@
 // --------------------------------------------------------------------------
 
 
+//  @description
+// --------------------------------------------------------------------------
+//  Class 'wave1609dot2' types definition.
+// --------------------------------------------------------------------------
+
+
 //  @warning
 // --------------------------------------------------------------------------
 //  This file is partially generated.
@@ -43,20 +49,8 @@
 //  User's code can be added between tags [@end, @<tag>].
 // --------------------------------------------------------------------------
 
-
-//  @description
-// --------------------------------------------------------------------------
-//  Manages wave1609dot2 error codes.
-// --------------------------------------------------------------------------
-
-#ifndef VSCW_ERROR_H_INCLUDED
-#define VSCW_ERROR_H_INCLUDED
+#include "vscw_wave1609dot2_defs.h"
 //  @end
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 
 //  @generated
@@ -65,42 +59,9 @@ extern "C" {
 //  Generated section start.
 // --------------------------------------------------------------------------
 
-//
-//  Defines pythia error codes.
-//
-enum vscw_error_t {
-    //
-    //  No errors was occurred.
-    //
-    vscw_SUCCESS = 0,
-    //
-    //  This error should not be returned if assertions is enabled.
-    //
-    vscw_error_BAD_ARGUMENTS = -1,
-    //
-    //  Memory allocation failed.
-    //
-    vscw_error_NO_MEMORY = -100,
-    //
-    //  Undrlying wave1609dot2 library returns -1.
-    //
-    vscw_error_WAVE1609DOT2_INNER_FAIL = -200
-};
-typedef enum vscw_error_t vscw_error_t;
-
 
 // --------------------------------------------------------------------------
 //  Generated section end.
 // clang-format on
 // --------------------------------------------------------------------------
-//  @end
-
-
-#ifdef __cplusplus
-}
-#endif
-
-
-//  @footer
-#endif // VSCW_ERROR_H_INCLUDED
 //  @end

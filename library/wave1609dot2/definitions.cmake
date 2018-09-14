@@ -51,4 +51,5 @@ endif()
 
 target_compile_definitions(wave1609dot2
         PUBLIC
+            "VSCW_WAVE1609DOT2=$<BOOL:${VSCW_WAVE1609DOT2}>"
         )

@@ -45,3 +45,7 @@
 
 include_guard()
 
+option(VSCW_WAVE1609DOT2 "Enable class 'wave1609dot2'." ON)
+mark_as_advanced(
+        VSCW_WAVE1609DOT2
+        )

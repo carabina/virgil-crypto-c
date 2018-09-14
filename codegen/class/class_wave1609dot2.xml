@@ -1,0 +1,18 @@
+<class name="wave1609dot2" context="private">
+    Provide wave1609dot2 implementation based on the Virgil Security.
+
+    <c_include file="mbedtls/ctr_drbg.h" scope="private" is_system="1"/>
+    <c_include file="mbedtls/entropy.h" scope="private" is_system="1"/>
+
+    <method name="init" of_class="global">
+        Performs global initialization of the wave1609dot2 library.
+        Must be called once for entire application at startup.
+    </method>
+
+
+    <method name="cleanup" of_class="global">
+        Performs global cleanup of the wave1609dot2 library.
+        Must be called once for entire application before exit.
+    </method>
+
+</class>

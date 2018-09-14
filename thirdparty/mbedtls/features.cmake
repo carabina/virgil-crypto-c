@@ -57,6 +57,23 @@ option(MBEDTLS_OID_C "" ON)
 option(MBEDTLS_ASN1_PARSE_C "" ON)
 option(MBEDTLS_ASN1_WRITE_C "" ON)
 option(MBEDTLS_GENPRIME "" ON)
+option(MBEDTLS_PEM_PARSE_C "" ON)
+option(MBEDTLS_BASE64_C "" ON)
+option(MBEDTLS_PK_C "" ON)
+option(MBEDTLS_ECP_C "" ON)
+option(MBEDTLS_PK_PARSE_C "" ON)
+option(MBEDTLS_ECP_DP_SECP256R1_ENABLED "" ON)
+option(MBEDTLS_ECP_DP_BP256R1_ENABLED "" ON)
+option(MBEDTLS_CERTS_C "" ON)
+option(MBEDTLS_ECDH_C "" ON)
+option(MBEDTLS_ECDSA_C "" ON)
+option(MBEDTLS_X509_USE_C "" ON)
+option(MBEDTLS_X509_CRT_PARSE_C "" ON)
+option(MBEDTLS_X509_CRL_PARSE_C "" ON)
+option(MBEDTLS_X509_CHECK_KEY_USAGE "" ON)
+option(MBEDTLS_X509_CHECK_EXTENDED_KEY_USAGE "" ON)
+option(MBEDTLS_X509_RSASSA_PSS_SUPPORT "" ON)
+option(MBEDTLS_WAVE1609_DOT_2_KERNEL "" ON)
 option(MBEDTLS_RSA_C "" ON)
 option(MBEDTLS_CTR_DRBG_C "" ON)
 option(MBEDTLS_ENTROPY_C "" ON)
@@ -77,6 +94,23 @@ mark_as_advanced(
         MBEDTLS_ASN1_PARSE_C
         MBEDTLS_ASN1_WRITE_C
         MBEDTLS_GENPRIME
+        MBEDTLS_PEM_PARSE_C
+        MBEDTLS_BASE64_C
+        MBEDTLS_PK_C
+        MBEDTLS_ECP_C
+        MBEDTLS_PK_PARSE_C
+        MBEDTLS_ECP_DP_SECP256R1_ENABLED
+        MBEDTLS_ECP_DP_BP256R1_ENABLED
+        MBEDTLS_CERTS_C
+        MBEDTLS_ECDH_C
+        MBEDTLS_ECDSA_C
+        MBEDTLS_X509_USE_C
+        MBEDTLS_X509_CRT_PARSE_C
+        MBEDTLS_X509_CRL_PARSE_C
+        MBEDTLS_X509_CHECK_KEY_USAGE
+        MBEDTLS_X509_CHECK_EXTENDED_KEY_USAGE
+        MBEDTLS_X509_RSASSA_PSS_SUPPORT
+        MBEDTLS_WAVE1609_DOT_2_KERNEL
         MBEDTLS_RSA_C
         MBEDTLS_CTR_DRBG_C
         MBEDTLS_ENTROPY_C
@@ -172,6 +206,15 @@ if(MBEDTLS_GCM_ALT AND NOT MBEDTLS_GCM_C)
     message("--")
     message("Feature MBEDTLS_GCM_ALT depends on the feature:")
     message("     MBEDTLS_GCM_C - which is disabled.")
+    message("--")
+    message(FATAL_ERROR)
+endif()
+
+if(MBEDTLS AND NOT MBEDTLS_SHA256_C)
+    message("-- error --")
+    message("--")
+    message("Feature MBEDTLS depends on the feature:")
+    message("     MBEDTLS_SHA256_C - which is disabled.")
     message("--")
     message(FATAL_ERROR)
 endif()

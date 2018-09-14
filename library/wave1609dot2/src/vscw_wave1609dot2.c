@@ -38,10 +38,7 @@
 
 //  @description
 // --------------------------------------------------------------------------
-//  Implements custom assert mechanism, which:
-//      - allows to choose assertion handler from predefined set,
-//        or provide custom assertion handler;
-//      - allows to choose which assertion leave in production build.
+//  Provide wave1609dot2 implementation based on the Virgil Security.
 // --------------------------------------------------------------------------
 
 
@@ -52,9 +49,13 @@
 //  User's code can be added between tags [@end, @<tag>].
 // --------------------------------------------------------------------------
 
+#include "vscw_wave1609dot2.h"
+#include "vscw_memory.h"
 #include "vscw_assert.h"
+#include "vscw_wave1609dot2_defs.h"
 
-#include <stdio.h>
+#include <mbedtls/ctr_drbg.h>
+#include <mbedtls/entropy.h>
 //  @end
 
 
@@ -65,67 +66,61 @@
 // --------------------------------------------------------------------------
 
 //
-//  Return pointer to the last component in the path.
+//  Return size of 'vscw_wave1609dot2_t'.
 //
-static const char *
-vscw_assert_path_basename(const char *path);
+VSCW_PUBLIC size_t
+vscw_wave1609dot2_ctx_size(void) {
 
-//
-//  Active handler for assertion failback.
-//
-static vscw_assert_handler_fn active_handler = vscw_assert_abort;
-
-//
-//  Change active assertion handler.
-//
-VSCW_PUBLIC void
-vscw_assert_change_handler(vscw_assert_handler_fn handler_cb) {
-
-//    VSCW_ASSERT (handler_cb);
-//    active_handler = handler_cb;
+    return sizeof(vscw_wave1609dot2_t);
 }
 
 //
-//  Assertion handler, that print given information and abort program.
-//  This is default handler.
+//  Allocate context and perform it's initialization.
 //
-VSCW_PUBLIC void
-vscw_assert_abort(const char *message, const char *file, int line) {
+VSCW_PUBLIC vscw_wave1609dot2_t *
+vscw_wave1609dot2_new(void) {
 
-//    printf ("Assertion failed: %s, file %s, line %d\n",
-//            message, vscw_assert_path_basename (file), line);
-//
-//    printf ("Abort");
-//
-//    abort ();
+    vscw_wave1609dot2_t *wave1609dot2_ctx = (vscw_wave1609dot2_t *) vscw_alloc(sizeof (vscw_wave1609dot2_t));
+    VSCW_ASSERT_ALLOC(wave1609dot2_ctx);
+
+    vscw_wave1609dot2_init(wave1609dot2_ctx);
+
+    wave1609dot2_ctx->self_dealloc_cb = vscw_dealloc;
+
+    return wave1609dot2_ctx;
 }
 
 //
-//  Trigger active assertion handler.
+//  Release all inner resorces and deallocate context if needed.
+//  It is safe to call this method even if context was allocated by the caller.
 //
 VSCW_PUBLIC void
-vscw_assert_trigger(const char *message, const char *file, int line) {
+vscw_wave1609dot2_delete(vscw_wave1609dot2_t *wave1609dot2_ctx) {
 
-//    active_handler (message, file, line);
+    if (NULL == wave1609dot2_ctx) {
+        return;
+    }
+
+    vscw_wave1609dot2_cleanup(wave1609dot2_ctx);
+
+    if (wave1609dot2_ctx->self_dealloc_cb != NULL) {
+         wave1609dot2_ctx->self_dealloc_cb(wave1609dot2_ctx);
+    }
 }
 
 //
-//  Return pointer to the last component in the path.
+//  Delete given context and nullifies reference.
+//  This is a reverse action of the function 'vscw_wave1609dot2_new ()'.
 //
-static const char *
-vscw_assert_path_basename(const char *path) {
+VSCW_PUBLIC void
+vscw_wave1609dot2_destroy(vscw_wave1609dot2_t **wave1609dot2_ctx_ref) {
 
-    const char *result = path;
-//    for (const char *symbol = path; *symbol != '\0' && (symbol - path < 255); ++symbol) {
-//
-//        const char *next_symbol = symbol + 1;
-//
-//        if (*next_symbol != '\0' && (*symbol == '\\' || *symbol == '/')) {
-//            result = next_symbol;
-//        }
-//    }
+    VSCW_ASSERT_PTR(wave1609dot2_ctx_ref);
 
-    return result;
+    vscw_wave1609dot2_t *wave1609dot2_ctx = *wave1609dot2_ctx_ref;
+    *wave1609dot2_ctx_ref = NULL;
+
+    vscw_wave1609dot2_delete(wave1609dot2_ctx);
 }
 
 
@@ -134,3 +129,44 @@ vscw_assert_path_basename(const char *path) {
 // clang-format on
 // --------------------------------------------------------------------------
 //  @end
+
+
+//
+//  Perform initialization of pre-allocated context.
+//
+VSCW_PUBLIC void
+vscw_wave1609dot2_init(vscw_wave1609dot2_t *wave1609dot2_ctx) {
+
+//    VSCW_ASSERT_PTR(wave1609dot2_ctx);
+
+    //  TODO: This is STUB. Implement me.
+}
+
+//
+//  Release all inner resources.
+//
+VSCW_PUBLIC void
+vscw_wave1609dot2_cleanup(vscw_wave1609dot2_t *wave1609dot2_ctx) {
+
+    //  TODO: This is STUB. Implement me.
+}
+
+//
+//  Performs global initialization of the wave1609dot2 library.
+//  Must be called once for entire application at startup.
+//
+VSCW_PUBLIC void
+vscw_init(void) {
+
+    //  TODO: This is STUB. Implement me.
+}
+
+//
+//  Performs global cleanup of the wave1609dot2 library.
+//  Must be called once for entire application before exit.
+//
+VSCW_PUBLIC void
+vscw_cleanup(void) {
+
+    //  TODO: This is STUB. Implement me.
+}

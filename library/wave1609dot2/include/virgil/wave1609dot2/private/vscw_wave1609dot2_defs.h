@@ -46,11 +46,13 @@
 
 //  @description
 // --------------------------------------------------------------------------
-//  Manages wave1609dot2 error codes.
+//  Class 'wave1609dot2' types definition.
 // --------------------------------------------------------------------------
 
-#ifndef VSCW_ERROR_H_INCLUDED
-#define VSCW_ERROR_H_INCLUDED
+#ifndef VSCW_WAVE1609DOT2_DEFS_H_INCLUDED
+#define VSCW_WAVE1609DOT2_DEFS_H_INCLUDED
+
+#include "vscw_library.h"
 //  @end
 
 
@@ -66,27 +68,14 @@ extern "C" {
 // --------------------------------------------------------------------------
 
 //
-//  Defines pythia error codes.
+//  Handle 'wave1609dot2' context.
 //
-enum vscw_error_t {
+struct vscw_wave1609dot2_t {
     //
-    //  No errors was occurred.
+    //  Function do deallocate self context.
     //
-    vscw_SUCCESS = 0,
-    //
-    //  This error should not be returned if assertions is enabled.
-    //
-    vscw_error_BAD_ARGUMENTS = -1,
-    //
-    //  Memory allocation failed.
-    //
-    vscw_error_NO_MEMORY = -100,
-    //
-    //  Undrlying wave1609dot2 library returns -1.
-    //
-    vscw_error_WAVE1609DOT2_INNER_FAIL = -200
+    vscw_dealloc_fn self_dealloc_cb;
 };
-typedef enum vscw_error_t vscw_error_t;
 
 
 // --------------------------------------------------------------------------
@@ -102,5 +91,5 @@ typedef enum vscw_error_t vscw_error_t;
 
 
 //  @footer
-#endif // VSCW_ERROR_H_INCLUDED
+#endif // VSCW_WAVE1609DOT2_DEFS_H_INCLUDED
 //  @end

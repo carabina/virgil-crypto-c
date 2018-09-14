@@ -52,4 +52,5 @@
     <module name="wave1609dot2 error"/>
     <module name="library"/>
     <module name="memory"/>
+    <class name="wave1609dot2"/>
 </project>

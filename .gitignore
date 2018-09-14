@@ -29,3 +29,13 @@ gcc*
 obj/
 bin/
 .vs/
+
+*.o
+*.o.cmd
+*.ko
+*.ko.cmd
+*.mod
+*.mod.c
+*.symvers
+.*project
+*.order

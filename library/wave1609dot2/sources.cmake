@@ -55,9 +55,13 @@ target_sources(wave1609dot2
             "${CMAKE_CURRENT_LIST_DIR}/include/virgil/wave1609dot2/vscw_error.h"
             "${CMAKE_CURRENT_LIST_DIR}/include/virgil/wave1609dot2/vscw_library.h"
             "${CMAKE_CURRENT_LIST_DIR}/include/virgil/wave1609dot2/vscw_memory.h"
+            "$<$<BOOL:${VSCW_WAVE1609DOT2}>:${CMAKE_CURRENT_LIST_DIR}/include/virgil/wave1609dot2/vscw_wave1609dot2.h>"
+            "$<$<BOOL:${VSCW_WAVE1609DOT2}>:${CMAKE_CURRENT_LIST_DIR}/include/virgil/wave1609dot2/private/vscw_wave1609dot2_defs.h>"
 
             "${CMAKE_CURRENT_LIST_DIR}/src/vscw_assert.c"
             "${CMAKE_CURRENT_LIST_DIR}/src/vscw_error.c"
             "${CMAKE_CURRENT_LIST_DIR}/src/vscw_library.c"
             "${CMAKE_CURRENT_LIST_DIR}/src/vscw_memory.c"
+            "$<$<BOOL:${VSCW_WAVE1609DOT2}>:${CMAKE_CURRENT_LIST_DIR}/src/vscw_wave1609dot2.c>"
+            "$<$<BOOL:${VSCW_WAVE1609DOT2}>:${CMAKE_CURRENT_LIST_DIR}/src/vscw_wave1609dot2_defs.c>"
         )
