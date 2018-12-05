@@ -45,7 +45,7 @@ add_subdirectory(data)
 
 macro(_add_benchmark name)
     add_executable(benchmark_${name} bench_${name}.c)
-    target_link_libraries(benchmark_${name} benchmark benchmark_data vsc::foundation)
+    target_link_libraries(benchmark_${name} benchmark benchmark_data vsc::foundation vsc::phe)
     set_target_properties(benchmark_${name} PROPERTIES C_STANDARD "99")
 endmacro()
 
@@ -55,4 +55,5 @@ _add_benchmark (sha224)
 _add_benchmark (sha256)
 _add_benchmark (sha384)
 _add_benchmark (sha512)
+_add_benchmark (phe)
 
