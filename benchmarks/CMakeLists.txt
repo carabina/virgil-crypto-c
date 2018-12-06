@@ -55,4 +55,5 @@ _add_benchmark (sha224)
 _add_benchmark (sha256)
 _add_benchmark (sha384)
 _add_benchmark (sha512)
+_add_benchmark (mbedtls)
 
