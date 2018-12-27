@@ -110,12 +110,8 @@ include(ExternalProject)
 
 if(TARGET protoc)
     set(PROTOC_EXE protoc)
-
-elseif(COMMAND find_host_package)
-    find_host_program(PROTOC_EXE NAMES protoc${CMAKE_EXECUTABLE_SUFFIX})
-
 else()
-    find_program(PROTOC_EXE NAMES protoc${CMAKE_EXECUTABLE_SUFFIX})
+    find_host_program(PROTOC_EXE NAMES protoc${CMAKE_EXECUTABLE_SUFFIX})
 endif()
 
 

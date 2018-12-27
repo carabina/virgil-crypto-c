@@ -46,6 +46,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # ---------------------------------------------------------------------------
 #   Helper modules
 # ---------------------------------------------------------------------------
+include("cmake/find_host_utils.cmake")
 include("cmake/clangformat.cmake")
 include("cmake/helpers.cmake")
 include("cmake/TransitiveArgs.cmake")
