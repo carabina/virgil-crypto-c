@@ -136,7 +136,6 @@
 				<extensions>true</extensions>
 				<configuration>
 					<javahOS>darwin</javahOS>
-					<jdkIncludePath>${java.home}/include</jdkIncludePath>
 					<javahClassNames>
 						<javahClassName>virgil.crypto.foundation.FoundationJNI</javahClassName>
 						<javahClassName>virgil.crypto.phe.PheJNI</javahClassName>
