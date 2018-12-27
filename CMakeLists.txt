@@ -102,6 +102,7 @@ option(VIRGIL_LIB_PHE "Build 'phe' library" ON)
 option(VIRGIL_WRAP_ALL "Build all available wrappers on the given platform" OFF)
 option(VIRGIL_WRAP_GO "Build 'Golang' wrapper" OFF)
 option(VIRGIL_WRAP_PHP "Build 'PHP' wrapper" OFF)
+option(VIRGIL_WRAP_JAVA "Build 'Java' wrapper" OFF)
 
 
 # ---------------------------------------------------------------------------
@@ -216,6 +217,10 @@ endif()
 
 if(VIRGIL_WRAP_ALL OR VIRGIL_WRAP_PHP)
     add_subdirectory("wrappers/php")
+endif()
+
+if(VIRGIL_WRAP_ALL OR VIRGIL_WRAP_JAVA)
+    add_subdirectory("wrappers/java")
 endif()
 
 
