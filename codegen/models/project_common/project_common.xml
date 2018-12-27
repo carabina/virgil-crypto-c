@@ -53,5 +53,6 @@
     <class name="data"/>
     <class name="buffer"/>
 
-    <wrapper lang="swift"/>
+    <!--wrapper lang="swift"/-->
+    <wrapper lang="java"/>
 </project>

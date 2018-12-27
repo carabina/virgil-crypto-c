@@ -1264,6 +1264,15 @@ function make_ref_php (uid)
 endfunction
 
 # ---------------------------------------------------------------------------
+#   Wraps given UID as 'Reference UID' specific for Java language.
+# ---------------------------------------------------------------------------
+function make_ref_java (uid)
+    check_argument (my, "uid", my)
+
+    return make_ref (my.uid, "java")
+endfunction
+
+# ---------------------------------------------------------------------------
 #   If given first parameter contains universal ref of format .(<uid>), then
 #   return language specific ref of format .(<lang>_<uid>).
 # ---------------------------------------------------------------------------
