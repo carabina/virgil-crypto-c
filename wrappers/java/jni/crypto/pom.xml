@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.virgilsecurity.crypto</groupId>
+		<artifactId>jni</artifactId>
+		<version>5.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>crypto</artifactId>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- Java libraries -->
+		<dependency>
+			<groupId>com.virgilsecurity.crypto</groupId>
+			<artifactId>foundation</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.virgilsecurity.crypto</groupId>
+			<artifactId>phe</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.virgilsecurity.crypto.jni</groupId>
+									<artifactId>linux</artifactId>
+									<version>${project.version}</version>
+									<type>so</type>
+									<destFileName>/linux/libvsc_crypto.so</destFileName>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.directory}/classes</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
