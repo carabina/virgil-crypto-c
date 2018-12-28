@@ -17,8 +17,7 @@ function(add_clangformat _targetname)
         foreach(_source ${_clang_sources})
             # remove cmake generator expressions if exists
             message(STATUS "-->${_source}")
-            string(REGEX REPLACE "([^:]+:)" "" _source "${_source}")
-            string(REGEX REPLACE ">" "" _source "${_source}")
+            string(REGEX MATCH "(([a-zA-Z]:(\\/|\\\\)|\\/)[^>]+)" _source "${_source}")
             message(STATUS "-->${_source}")
 
             if(NOT TARGET ${_source})
