@@ -52,9 +52,12 @@ add_library(phe_java SHARED "")
 set_target_properties(phe_java PROPERTIES
         C_STANDARD 99
         DEBUG_POSTFIX "_d"
-        OUTPUT_NAME vscf_phe
-        SUFFIX ".jnilib"
+        OUTPUT_NAME vsce_phe_java
         )
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set_target_properties(phe_java PROPERTIES SUFFIX ".jnilib")
+endif()
 
 target_sources(phe_java
         PRIVATE

@@ -52,9 +52,12 @@ add_library(foundation_java SHARED "")
 set_target_properties(foundation_java PROPERTIES
         C_STANDARD 99
         DEBUG_POSTFIX "_d"
-        OUTPUT_NAME vscf_foundation
-        SUFFIX ".jnilib"
+        OUTPUT_NAME vscf_foundation_java
         )
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set_target_properties(foundation_java PROPERTIES SUFFIX ".jnilib")
+endif()
 
 target_sources(foundation_java
         PRIVATE
