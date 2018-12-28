@@ -13,12 +13,13 @@ function(add_clangformat _targetname)
         get_target_property(_clang_sources ${_targetname} SOURCES)
         get_target_property(_builddir ${_targetname} BINARY_DIR)
 
-
         set(_sources "")
         foreach(_source ${_clang_sources})
             # remove cmake generator expressions if exists
+            message(STATUS "-->${_source}")
             string(REGEX REPLACE "([^:]+:)" "" _source "${_source}")
             string(REGEX REPLACE ">" "" _source "${_source}")
+            message(STATUS "-->${_source}")
 
             if(NOT TARGET ${_source})
                 get_filename_component(_source_file ${_source} NAME)
