@@ -425,7 +425,7 @@ function java_insert_jni_class_initialization (java_class)
 
     java_insert_code ("\
         static {
-            NativeUtils.load();
+            NativeUtils.load(\"$(my.java_class.jni_library:)\");
             INSTANCE = new $(my.java_class.name:)();
         }
 

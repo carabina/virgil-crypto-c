@@ -16,6 +16,96 @@
 			<artifactId>common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-linux</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes/linux</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${jni.binaries.dir}/linux/lib</directory>
+									<includes>
+										<include>libvscf_foundation_java.so</include>
+									</includes>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-darwin</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes/mac os</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${jni.binaries.dir}/mac os/lib</directory>
+									<includes>
+										<include>libvscf_foundation_java.so</include>
+									</includes>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-win-x86</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes/windows/x86</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${jni.binaries.dir}/windows/x86/lib</directory>
+									<includes>
+										<include>libvscf_foundation_java.dll</include>
+									</includes>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-win-amd64</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes/windows/amd64</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${jni.binaries.dir}/windows/amd64/lib</directory>
+									<includes>
+										<include>libvscf_foundation_java.dll</include>
+									</includes>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

@@ -43,7 +43,7 @@ public class PheJNI {
     public static final PheJNI INSTANCE;
 
     static {
-        NativeUtils.load();
+        NativeUtils.load("vsce_phe");
         INSTANCE = new PheJNI();
     }
 

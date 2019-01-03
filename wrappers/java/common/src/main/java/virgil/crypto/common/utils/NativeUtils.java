@@ -9,24 +9,29 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.ProviderNotFoundException;
 import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class NativeUtils {
 
-	private static boolean loaded = false;
+	private static final String MACOS_OS_NAME = "mac os";
+	private static final String LINUX_OS_NAME = "linux";
+	private static final String WINDOWS_OS_NAME = "windows";
+	private static final String UNKNOWN_OS = "unknown";
 
-	public static void load() {
-		if (loaded) {
-			return;
-		}
+	private static final String MACOS_LIBS_DIRECTORY = MACOS_OS_NAME;
+	private static final String LINUX_LIBS_DIRECTORY = LINUX_OS_NAME;
+	private static final String WINDOWS_LIBS_DIRECTORY = WINDOWS_OS_NAME;
+
+	private static final Logger LOG = Logger.getLogger("NativeUtils");
+
+	public static void load(String name) {
 		try {
-			NativeUtils.loadLibrary("common");
-			NativeUtils.loadLibrary("foundation");
-			NativeUtils.loadLibrary("phe");
-			NativeUtils.loadLibrary("crypto");
+			LOG.log(Level.WARNING, "Loading \"{0}\" library", name);
+			NativeUtils.loadLibrary(name);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "Native library can't be loaded.", e);
 		}
-		loaded = true;
 	}
 
 	/**
@@ -49,11 +54,63 @@ public class NativeUtils {
 
 	public static void loadLibrary(String name) throws IOException {
 		try {
-			System.loadLibrary("vsc_" + name);
+			System.loadLibrary(name);
+			// Library is loaded (Android or exists in java.library.path). We can exit
+			return;
 		} catch (Throwable e) {
-			System.out.println(String.format("Loading '%s' from JAR", name));
-			loadLibraryFromJar("/libvsc_" + name + ".so");
+			// Library couldn't be loaded yet. We'll load it later.
 		}
+		// Build native library name according to current system
+		String osName = System.getProperty("os.name").toLowerCase();
+		String os = getOS(osName);
+		String osArch = System.getProperty("os.arch").toLowerCase();
+
+		StringBuilder resourceName = new StringBuilder();
+		resourceName.append(getResourceDirectory(os, osArch)).append("/lib").append(name).append("_java")
+				.append(getLibraryFileSuffix(os));
+		loadLibraryFromJar(resourceName.toString());
+	}
+
+	private static final String getLibraryFileSuffix(String os) {
+		switch (os) {
+		case LINUX_OS_NAME:
+		case MACOS_OS_NAME:
+			return ".so";
+		case WINDOWS_OS_NAME:
+			return ".dll";
+		}
+		return "";
+	}
+
+	/**
+	 * Get operation system by operation system name
+	 *
+	 * @param osName The OS name.
+	 * @return
+	 */
+	private static final String getOS(String osName) {
+		for (String os : new String[] { LINUX_OS_NAME, WINDOWS_OS_NAME, MACOS_OS_NAME }) {
+			if (osName.startsWith(os)) {
+				return os;
+			}
+		}
+		return UNKNOWN_OS;
+	}
+
+	private static final String getResourceDirectory(String os, String osArch) {
+		StringBuilder sb = new StringBuilder("/");
+		switch (os) {
+		case LINUX_OS_NAME:
+			sb.append(LINUX_LIBS_DIRECTORY);
+			break;
+		case MACOS_OS_NAME:
+			sb.append(MACOS_LIBS_DIRECTORY);
+			break;
+		case WINDOWS_OS_NAME:
+			sb.append(WINDOWS_LIBS_DIRECTORY).append("/").append(osArch);
+			break;
+		}
+		return sb.toString();
 	}
 
 	/**

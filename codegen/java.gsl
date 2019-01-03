@@ -1602,6 +1602,7 @@ function java_create_jni_context_module (destination, wrapper, meta)
             .name = my.name
             .visibility = "public"
             .jni = "1"
+            .jni_library = "$(my.wrapper.prefix:)_$(my.wrapper.project:)"
             
             new java_field to java_class
                 .name = "INSTANCE"

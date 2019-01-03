@@ -43,7 +43,7 @@ public class FoundationJNI {
     public static final FoundationJNI INSTANCE;
 
     static {
-        NativeUtils.load();
+        NativeUtils.load("vscf_foundation");
         INSTANCE = new FoundationJNI();
     }
 
