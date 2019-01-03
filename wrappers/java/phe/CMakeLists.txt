@@ -56,7 +56,7 @@ set_target_properties(phe_java PROPERTIES
         )
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    set_target_properties(phe_java PROPERTIES SUFFIX ".jnilib")
+    set_target_properties(phe_java PROPERTIES SUFFIX ".so")
 endif()
 
 target_sources(phe_java
