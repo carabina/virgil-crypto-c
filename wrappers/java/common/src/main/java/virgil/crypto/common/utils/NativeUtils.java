@@ -74,8 +74,9 @@ public class NativeUtils {
 	private static final String getLibraryFileSuffix(String os) {
 		switch (os) {
 		case LINUX_OS_NAME:
-		case MACOS_OS_NAME:
 			return ".so";
+		case MACOS_OS_NAME:
+			return ".jnilib";
 		case WINDOWS_OS_NAME:
 			return ".dll";
 		}
