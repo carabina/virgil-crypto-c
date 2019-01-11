@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,12 +46,12 @@ public interface PublicKey extends Key {
     /*
     * Define whether a public key can be exported or not.
      */
-    Boolean getCanExportPublicKey() ;
+    boolean getCanExportPublicKey() ;
 
     /*
     * Defines whether a public key can be imported or not.
      */
-    Boolean getCanImportPublicKey() ;
+    boolean getCanImportPublicKey() ;
 
     /*
     * Export public key in the binary format.
@@ -65,7 +65,7 @@ public interface PublicKey extends Key {
     /*
     * Return length in bytes required to hold exported public key.
      */
-    Integer exportedPublicKeyLen() ;
+    int exportedPublicKeyLen() ;
 
     /*
     * Import public key from the binary format.

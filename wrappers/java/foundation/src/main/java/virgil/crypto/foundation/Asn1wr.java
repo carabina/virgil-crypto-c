@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -63,7 +63,7 @@ public class Asn1wr implements Asn1Writer {
     /*
     * Reset all internal states and prepare to new ASN.1 writing operations.
      */
-    public void reset(Byte out, Integer outLen) {
+    public void reset(byte out, int outLen) {
         FoundationJNI.INSTANCE.asn1wr_reset(this.cCtx, out, outLen);
     }
 
@@ -71,7 +71,7 @@ public class Asn1wr implements Asn1Writer {
     * Move written data to the buffer beginning and forbid further operations.
     * Returns written size in bytes.
      */
-    public Integer finish() {
+    public int finish() {
         return FoundationJNI.INSTANCE.asn1wr_finish(this.cCtx);
     }
 
@@ -86,7 +86,7 @@ public class Asn1wr implements Asn1Writer {
     * Move writing position backward for the given length.
     * Return current writing position.
      */
-    public Byte reserve(Integer len) {
+    public byte reserve(int len) {
         return FoundationJNI.INSTANCE.asn1wr_reserve(this.cCtx, len);
     }
 
@@ -94,7 +94,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 tag.
     * Return count of written bytes.
      */
-    public Integer writeTag(Integer tag) {
+    public int writeTag(int tag) {
         return FoundationJNI.INSTANCE.asn1wr_writeTag(this.cCtx, tag);
     }
 
@@ -102,7 +102,7 @@ public class Asn1wr implements Asn1Writer {
     * Write length of the following data.
     * Return count of written bytes.
      */
-    public Integer writeLen(Integer len) {
+    public int writeLen(int len) {
         return FoundationJNI.INSTANCE.asn1wr_writeLen(this.cCtx, len);
     }
 
@@ -110,7 +110,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeInt(Integer value) {
+    public int writeInt(int value) {
         return FoundationJNI.INSTANCE.asn1wr_writeInt(this.cCtx, value);
     }
 
@@ -118,7 +118,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeInt8(Byte value) {
+    public int writeInt8(byte value) {
         return FoundationJNI.INSTANCE.asn1wr_writeInt8(this.cCtx, value);
     }
 
@@ -126,7 +126,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeInt16(Short value) {
+    public int writeInt16(short value) {
         return FoundationJNI.INSTANCE.asn1wr_writeInt16(this.cCtx, value);
     }
 
@@ -134,7 +134,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeInt32(Integer value) {
+    public int writeInt32(int value) {
         return FoundationJNI.INSTANCE.asn1wr_writeInt32(this.cCtx, value);
     }
 
@@ -142,7 +142,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeInt64(Long value) {
+    public int writeInt64(long value) {
         return FoundationJNI.INSTANCE.asn1wr_writeInt64(this.cCtx, value);
     }
 
@@ -150,7 +150,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeUint(Long value) {
+    public int writeUint(long value) {
         return FoundationJNI.INSTANCE.asn1wr_writeUint(this.cCtx, value);
     }
 
@@ -158,7 +158,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeUint8(Short value) {
+    public int writeUint8(short value) {
         return FoundationJNI.INSTANCE.asn1wr_writeUint8(this.cCtx, value);
     }
 
@@ -166,7 +166,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeUint16(Integer value) {
+    public int writeUint16(int value) {
         return FoundationJNI.INSTANCE.asn1wr_writeUint16(this.cCtx, value);
     }
 
@@ -174,7 +174,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeUint32(Long value) {
+    public int writeUint32(long value) {
         return FoundationJNI.INSTANCE.asn1wr_writeUint32(this.cCtx, value);
     }
 
@@ -182,7 +182,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    public Integer writeUint64(Long value) {
+    public int writeUint64(long value) {
         return FoundationJNI.INSTANCE.asn1wr_writeUint64(this.cCtx, value);
     }
 
@@ -190,14 +190,14 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: BOOLEAN.
     * Return count of written bytes.
      */
-    public Integer writeBool(Boolean value) {
+    public int writeBool(boolean value) {
         return FoundationJNI.INSTANCE.asn1wr_writeBool(this.cCtx, value);
     }
 
     /*
     * Write ASN.1 type: NULL.
      */
-    public Integer writeNull() {
+    public int writeNull() {
         return FoundationJNI.INSTANCE.asn1wr_writeNull(this.cCtx);
     }
 
@@ -205,7 +205,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: OCTET STRING.
     * Return count of written bytes.
      */
-    public Integer writeOctetStr(byte[] value) {
+    public int writeOctetStr(byte[] value) {
         return FoundationJNI.INSTANCE.asn1wr_writeOctetStr(this.cCtx, value);
     }
 
@@ -214,7 +214,7 @@ public class Asn1wr implements Asn1Writer {
     *
     * Return count of written bytes.
      */
-    public Integer writeOctetStrAsBitstring(byte[] value) {
+    public int writeOctetStrAsBitstring(byte[] value) {
         return FoundationJNI.INSTANCE.asn1wr_writeOctetStrAsBitstring(this.cCtx, value);
     }
 
@@ -223,7 +223,7 @@ public class Asn1wr implements Asn1Writer {
     * Return count of written bytes.
     * Note, use this method carefully.
      */
-    public Integer writeData(byte[] data) {
+    public int writeData(byte[] data) {
         return FoundationJNI.INSTANCE.asn1wr_writeData(this.cCtx, data);
     }
 
@@ -231,7 +231,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: UTF8String.
     * Return count of written bytes.
      */
-    public Integer writeUtf8Str(byte[] value) {
+    public int writeUtf8Str(byte[] value) {
         return FoundationJNI.INSTANCE.asn1wr_writeUtf8Str(this.cCtx, value);
     }
 
@@ -239,7 +239,7 @@ public class Asn1wr implements Asn1Writer {
     * Write ASN.1 type: OID.
     * Return count of written bytes.
      */
-    public Integer writeOid(byte[] value) {
+    public int writeOid(byte[] value) {
         return FoundationJNI.INSTANCE.asn1wr_writeOid(this.cCtx, value);
     }
 
@@ -247,7 +247,7 @@ public class Asn1wr implements Asn1Writer {
     * Mark previously written data of given length as ASN.1 type: SQUENCE.
     * Return count of written bytes.
      */
-    public Integer writeSequence(Integer len) {
+    public int writeSequence(int len) {
         return FoundationJNI.INSTANCE.asn1wr_writeSequence(this.cCtx, len);
     }
 
@@ -255,7 +255,7 @@ public class Asn1wr implements Asn1Writer {
     * Mark previously written data of given length as ASN.1 type: SET.
     * Return count of written bytes.
      */
-    public Integer writeSet(Integer len) {
+    public int writeSet(int len) {
         return FoundationJNI.INSTANCE.asn1wr_writeSet(this.cCtx, len);
     }
 }

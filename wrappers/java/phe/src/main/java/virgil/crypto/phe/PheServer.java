@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -44,7 +44,7 @@ import virgil.crypto.foundation.*;
 * Class for server-side PHE crypto operations.
 * This class is thread-safe in case if VSCE_MULTI_THREAD defined
  */
-public class PheServer {
+public class PheServer implements AutoCloseable {
 
     public long cCtx;
 
@@ -61,6 +61,11 @@ public class PheServer {
     public PheServer(long cCtx) {
         super();
         this.cCtx = cCtx;
+    }
+
+    /* Close resource. */
+    public void close() {
+        PheJNI.INSTANCE.pheServer_close(this.cCtx);
     }
 
     /*
@@ -87,7 +92,7 @@ public class PheServer {
     /*
     * Buffer size needed to fit EnrollmentResponse
      */
-    public Integer enrollmentResponseLen() {
+    public int enrollmentResponseLen() {
         return PheJNI.INSTANCE.pheServer_enrollmentResponseLen(this.cCtx);
     }
 
@@ -101,7 +106,7 @@ public class PheServer {
     /*
     * Buffer size needed to fit VerifyPasswordResponse
      */
-    public Integer verifyPasswordResponseLen() {
+    public int verifyPasswordResponseLen() {
         return PheJNI.INSTANCE.pheServer_verifyPasswordResponseLen(this.cCtx);
     }
 
@@ -115,7 +120,7 @@ public class PheServer {
     /*
     * Buffer size needed to fit UpdateToken
      */
-    public Integer updateTokenLen() {
+    public int updateTokenLen() {
         return PheJNI.INSTANCE.pheServer_updateTokenLen(this.cCtx);
     }
 

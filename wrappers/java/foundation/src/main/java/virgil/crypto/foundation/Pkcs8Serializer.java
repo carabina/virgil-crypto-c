@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -80,7 +80,7 @@ public class Pkcs8Serializer implements Defaults, KeySerializer {
     *
     * Precondition: public key must be exportable.
      */
-    public Integer serializedPublicKeyLen(PublicKey publicKey) {
+    public int serializedPublicKeyLen(PublicKey publicKey) {
         return FoundationJNI.INSTANCE.pkcs8Serializer_serializedPublicKeyLen(this.cCtx, publicKey);
     }
 
@@ -98,7 +98,7 @@ public class Pkcs8Serializer implements Defaults, KeySerializer {
     *
     * Precondition: private key must be exportable.
      */
-    public Integer serializedPrivateKeyLen(PrivateKey privateKey) {
+    public int serializedPrivateKeyLen(PrivateKey privateKey) {
         return FoundationJNI.INSTANCE.pkcs8Serializer_serializedPrivateKeyLen(this.cCtx, privateKey);
     }
 

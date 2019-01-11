@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -67,7 +67,7 @@ public class Kdf2 implements Kdf {
     /*
     * Derive key of the requested length from the given data.
      */
-    public byte[] derive(byte[] data, Integer keyLen) {
+    public byte[] derive(byte[] data, int keyLen) {
         return FoundationJNI.INSTANCE.kdf2_derive(this.cCtx, data, keyLen);
     }
 }

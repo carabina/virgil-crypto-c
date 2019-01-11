@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -70,14 +70,14 @@ class Asn1ReaderProxy implements Asn1Reader {
     /*
     * Get tag of the current ASN.1 element.
      */
-    public Integer getTag() {
+    public int getTag() {
         return FoundationJNI.INSTANCE.asn1Reader_getTag(this.cCtx);
     }
 
     /*
     * Get length of the current ASN.1 element.
      */
-    public Integer getLen() {
+    public int getLen() {
         return FoundationJNI.INSTANCE.asn1Reader_getLen(this.cCtx);
     }
 
@@ -85,84 +85,84 @@ class Asn1ReaderProxy implements Asn1Reader {
     * Read ASN.1 type: TAG.
     * Return element length.
      */
-    public Integer readTag(Integer tag) {
+    public int readTag(int tag) {
         return FoundationJNI.INSTANCE.asn1Reader_readTag(this.cCtx, tag);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Integer readInt() {
+    public int readInt() {
         return FoundationJNI.INSTANCE.asn1Reader_readInt(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Byte readInt8() {
+    public byte readInt8() {
         return FoundationJNI.INSTANCE.asn1Reader_readInt8(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Short readInt16() {
+    public short readInt16() {
         return FoundationJNI.INSTANCE.asn1Reader_readInt16(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Integer readInt32() {
+    public int readInt32() {
         return FoundationJNI.INSTANCE.asn1Reader_readInt32(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Long readInt64() {
+    public long readInt64() {
         return FoundationJNI.INSTANCE.asn1Reader_readInt64(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Long readUint() {
+    public long readUint() {
         return FoundationJNI.INSTANCE.asn1Reader_readUint(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Short readUint8() {
+    public short readUint8() {
         return FoundationJNI.INSTANCE.asn1Reader_readUint8(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Integer readUint16() {
+    public int readUint16() {
         return FoundationJNI.INSTANCE.asn1Reader_readUint16(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Long readUint32() {
+    public long readUint32() {
         return FoundationJNI.INSTANCE.asn1Reader_readUint32(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    public Long readUint64() {
+    public long readUint64() {
         return FoundationJNI.INSTANCE.asn1Reader_readUint64(this.cCtx);
     }
 
     /*
     * Read ASN.1 type: BOOLEAN.
      */
-    public Boolean readBool() {
+    public boolean readBool() {
         return FoundationJNI.INSTANCE.asn1Reader_readBool(this.cCtx);
     }
 
@@ -204,7 +204,7 @@ class Asn1ReaderProxy implements Asn1Reader {
     /*
     * Read raw data of given length.
      */
-    public byte[] readData(Integer len) {
+    public byte[] readData(int len) {
         return FoundationJNI.INSTANCE.asn1Reader_readData(this.cCtx, len);
     }
 
@@ -212,7 +212,7 @@ class Asn1ReaderProxy implements Asn1Reader {
     * Read ASN.1 type: CONSTRUCTED | SEQUENCE.
     * Return element length.
      */
-    public Integer readSequence() {
+    public int readSequence() {
         return FoundationJNI.INSTANCE.asn1Reader_readSequence(this.cCtx);
     }
 
@@ -220,7 +220,7 @@ class Asn1ReaderProxy implements Asn1Reader {
     * Read ASN.1 type: CONSTRUCTED | SET.
     * Return element length.
      */
-    public Integer readSet() {
+    public int readSet() {
         return FoundationJNI.INSTANCE.asn1Reader_readSet(this.cCtx);
     }
 }

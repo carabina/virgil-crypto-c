@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -67,7 +67,7 @@ public class Hmac implements MacInfo, Mac, MacStream {
     /*
     * Size of the digest (mac output) in bytes.
      */
-    public Integer digestLen() {
+    public int digestLen() {
         return FoundationJNI.INSTANCE.hmac_digestLen(this.cCtx);
     }
 

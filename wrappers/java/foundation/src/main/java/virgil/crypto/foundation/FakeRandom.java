@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -63,7 +63,7 @@ public class FakeRandom implements Random, EntropySource {
     /*
     * Configure random number generator to generate sequence filled with given byte.
      */
-    public void setupSourceByte(Byte byteSource) {
+    public void setupSourceByte(byte byteSource) {
         FoundationJNI.INSTANCE.fakeRandom_setupSourceByte(this.cCtx, byteSource);
     }
 
@@ -78,7 +78,7 @@ public class FakeRandom implements Random, EntropySource {
     /*
     * Generate random bytes.
      */
-    public byte[] random(Integer dataLen) {
+    public byte[] random(int dataLen) {
         return FoundationJNI.INSTANCE.fakeRandom_random(this.cCtx, dataLen);
     }
 
@@ -92,14 +92,14 @@ public class FakeRandom implements Random, EntropySource {
     /*
     * Defines that implemented source is strong.
      */
-    public Boolean isStrong() {
+    public boolean isStrong() {
         return FoundationJNI.INSTANCE.fakeRandom_isStrong(this.cCtx);
     }
 
     /*
     * Gather entropy of the requested length.
      */
-    public byte[] gather(Integer len) {
+    public byte[] gather(int len) {
         return FoundationJNI.INSTANCE.fakeRandom_gather(this.cCtx, len);
     }
 }

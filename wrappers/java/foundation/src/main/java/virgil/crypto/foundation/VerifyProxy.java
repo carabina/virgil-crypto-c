@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,7 +54,7 @@ class VerifyProxy implements Verify {
     /*
     * Verify data with given public key and signature.
      */
-    public Boolean verify(byte[] data, byte[] signature) {
+    public boolean verify(byte[] data, byte[] signature) {
         return FoundationJNI.INSTANCE.verify_verify(this.cCtx, data, signature);
     }
 }

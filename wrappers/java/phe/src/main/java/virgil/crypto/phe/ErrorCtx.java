@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,7 +46,7 @@ import virgil.crypto.foundation.*;
 * In this way operation is successful if all steps are successful, otherwise
 * last occurred error code can be obtained.
  */
-public class ErrorCtx {
+public class ErrorCtx implements AutoCloseable {
 
     public long cCtx;
 
@@ -63,6 +63,11 @@ public class ErrorCtx {
     public ErrorCtx(long cCtx) {
         super();
         this.cCtx = cCtx;
+    }
+
+    /* Close resource. */
+    public void close() {
+        PheJNI.INSTANCE.errorCtx_close(this.cCtx);
     }
 
     /*

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,11 +46,11 @@ public interface EntropySource {
     /*
     * Defines that implemented source is strong.
      */
-    Boolean isStrong() ;
+    boolean isStrong() ;
 
     /*
     * Gather entropy of the requested length.
      */
-    byte[] gather(Integer len) ;
+    byte[] gather(int len) ;
 }
 

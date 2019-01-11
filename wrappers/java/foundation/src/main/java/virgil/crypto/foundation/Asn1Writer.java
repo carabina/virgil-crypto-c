@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -48,13 +48,13 @@ public interface Asn1Writer {
     /*
     * Reset all internal states and prepare to new ASN.1 writing operations.
      */
-    void reset(Byte out, Integer outLen) ;
+    void reset(byte out, int outLen) ;
 
     /*
     * Move written data to the buffer beginning and forbid further operations.
     * Returns written size in bytes.
      */
-    Integer finish() ;
+    int finish() ;
 
     /*
     * Return last error.
@@ -65,133 +65,133 @@ public interface Asn1Writer {
     * Move writing position backward for the given length.
     * Return current writing position.
      */
-    Byte reserve(Integer len) ;
+    byte reserve(int len) ;
 
     /*
     * Write ASN.1 tag.
     * Return count of written bytes.
      */
-    Integer writeTag(Integer tag) ;
+    int writeTag(int tag) ;
 
     /*
     * Write length of the following data.
     * Return count of written bytes.
      */
-    Integer writeLen(Integer len) ;
+    int writeLen(int len) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeInt(Integer value) ;
+    int writeInt(int value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeInt8(Byte value) ;
+    int writeInt8(byte value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeInt16(Short value) ;
+    int writeInt16(short value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeInt32(Integer value) ;
+    int writeInt32(int value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeInt64(Long value) ;
+    int writeInt64(long value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeUint(Long value) ;
+    int writeUint(long value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeUint8(Short value) ;
+    int writeUint8(short value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeUint16(Integer value) ;
+    int writeUint16(int value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeUint32(Long value) ;
+    int writeUint32(long value) ;
 
     /*
     * Write ASN.1 type: INTEGER.
     * Return count of written bytes.
      */
-    Integer writeUint64(Long value) ;
+    int writeUint64(long value) ;
 
     /*
     * Write ASN.1 type: BOOLEAN.
     * Return count of written bytes.
      */
-    Integer writeBool(Boolean value) ;
+    int writeBool(boolean value) ;
 
     /*
     * Write ASN.1 type: NULL.
      */
-    Integer writeNull() ;
+    int writeNull() ;
 
     /*
     * Write ASN.1 type: OCTET STRING.
     * Return count of written bytes.
      */
-    Integer writeOctetStr(byte[] value) ;
+    int writeOctetStr(byte[] value) ;
 
     /*
     * Write ASN.1 type: BIT STRING with all zero unused bits.
     *
     * Return count of written bytes.
      */
-    Integer writeOctetStrAsBitstring(byte[] value) ;
+    int writeOctetStrAsBitstring(byte[] value) ;
 
     /*
     * Write raw data directly to the ASN.1 structure.
     * Return count of written bytes.
     * Note, use this method carefully.
      */
-    Integer writeData(byte[] data) ;
+    int writeData(byte[] data) ;
 
     /*
     * Write ASN.1 type: UTF8String.
     * Return count of written bytes.
      */
-    Integer writeUtf8Str(byte[] value) ;
+    int writeUtf8Str(byte[] value) ;
 
     /*
     * Write ASN.1 type: OID.
     * Return count of written bytes.
      */
-    Integer writeOid(byte[] value) ;
+    int writeOid(byte[] value) ;
 
     /*
     * Mark previously written data of given length as ASN.1 type: SQUENCE.
     * Return count of written bytes.
      */
-    Integer writeSequence(Integer len) ;
+    int writeSequence(int len) ;
 
     /*
     * Mark previously written data of given length as ASN.1 type: SET.
     * Return count of written bytes.
      */
-    Integer writeSet(Integer len) ;
+    int writeSet(int len) ;
 }
 

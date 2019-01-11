@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -76,7 +76,7 @@ public class RsaPrivateKey implements Key, GenerateKey, Decrypt, Sign, PrivateKe
     /*
     * Setup parameters that is used during key generation.
      */
-    public void setKeygenParams(Integer bitlen, Integer exponent) {
+    public void setKeygenParams(int bitlen, int exponent) {
         FoundationJNI.INSTANCE.rsaPrivateKey_setKeygenParams(this.cCtx, bitlen, exponent);
     }
 
@@ -90,14 +90,14 @@ public class RsaPrivateKey implements Key, GenerateKey, Decrypt, Sign, PrivateKe
     /*
     * Length of the key in bytes.
      */
-    public Integer keyLen() {
+    public int keyLen() {
         return FoundationJNI.INSTANCE.rsaPrivateKey_keyLen(this.cCtx);
     }
 
     /*
     * Length of the key in bits.
      */
-    public Integer keyBitlen() {
+    public int keyBitlen() {
         return FoundationJNI.INSTANCE.rsaPrivateKey_keyBitlen(this.cCtx);
     }
 
@@ -119,7 +119,7 @@ public class RsaPrivateKey implements Key, GenerateKey, Decrypt, Sign, PrivateKe
     /*
     * Calculate required buffer length to hold the decrypted data.
      */
-    public Integer decryptedLen(Integer dataLen) {
+    public int decryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.rsaPrivateKey_decryptedLen(this.cCtx, dataLen);
     }
 
@@ -133,21 +133,21 @@ public class RsaPrivateKey implements Key, GenerateKey, Decrypt, Sign, PrivateKe
     /*
     * Return length in bytes required to hold signature.
      */
-    public Integer signatureLen() {
+    public int signatureLen() {
         return FoundationJNI.INSTANCE.rsaPrivateKey_signatureLen(this.cCtx);
     }
 
     /*
     * Define whether a private key can be imported or not.
      */
-    public Boolean getCanImportPrivateKey() {
+    public boolean getCanImportPrivateKey() {
         return true;
     }
 
     /*
     * Define whether a private key can be exported or not.
      */
-    public Boolean getCanExportPrivateKey() {
+    public boolean getCanExportPrivateKey() {
         return true;
     }
 
@@ -172,7 +172,7 @@ public class RsaPrivateKey implements Key, GenerateKey, Decrypt, Sign, PrivateKe
     /*
     * Return length in bytes required to hold exported private key.
      */
-    public Integer exportedPrivateKeyLen() {
+    public int exportedPrivateKeyLen() {
         return FoundationJNI.INSTANCE.rsaPrivateKey_exportedPrivateKeyLen(this.cCtx);
     }
 

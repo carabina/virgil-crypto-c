@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,21 +46,21 @@ public interface CipherInfo {
     /*
     * Cipher nfonce length or IV length in bytes, or 0 if nonce is not required.
      */
-    Integer getNonceLen() ;
+    int getNonceLen() ;
 
     /*
     * Cipher key length in bytes.
      */
-    Integer getKeyLen() ;
+    int getKeyLen() ;
 
     /*
     * Cipher key length in bits.
      */
-    Integer getKeyBitlen() ;
+    int getKeyBitlen() ;
 
     /*
     * Cipher block length in bytes.
      */
-    Integer getBlockLen() ;
+    int getBlockLen() ;
 }
 

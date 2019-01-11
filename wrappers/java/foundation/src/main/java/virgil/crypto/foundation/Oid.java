@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -60,7 +60,7 @@ public class Oid {
     /*
     * Return true if given OIDs are equal.
      */
-    public Boolean equal(byte[] lhs, byte[] rhs) {
+    public boolean equal(byte[] lhs, byte[] rhs) {
         return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
     }
 }

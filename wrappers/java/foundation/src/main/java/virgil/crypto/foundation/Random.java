@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,7 +46,7 @@ public interface Random {
     /*
     * Generate random bytes.
      */
-    byte[] random(Integer dataLen) ;
+    byte[] random(int dataLen) ;
 
     /*
     * Retreive new seed data from the entropy sources.

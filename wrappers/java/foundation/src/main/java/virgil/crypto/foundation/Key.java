@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -51,11 +51,11 @@ public interface Key {
     /*
     * Length of the key in bytes.
      */
-    Integer keyLen() ;
+    int keyLen() ;
 
     /*
     * Length of the key in bits.
      */
-    Integer keyBitlen() ;
+    int keyBitlen() ;
 }
 

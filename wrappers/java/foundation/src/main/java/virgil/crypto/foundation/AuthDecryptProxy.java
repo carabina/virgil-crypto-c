@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,7 +54,7 @@ class AuthDecryptProxy implements AuthDecrypt {
     /*
     * Defines authentication tag length in bytes.
      */
-    public Integer getAuthTagLen() {
+    public int getAuthTagLen() {
         return FoundationJNI.INSTANCE.cipherAuthInfo_getAuthTagLen(this.cCtx);
     }
 
@@ -69,7 +69,7 @@ class AuthDecryptProxy implements AuthDecrypt {
     /*
     * Calculate required buffer length to hold the authenticated decrypted data.
      */
-    public Integer authDecryptedLen(Integer dataLen) {
+    public int authDecryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.authDecrypt_authDecryptedLen(this.cCtx, dataLen);
     }
 }

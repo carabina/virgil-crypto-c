@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -61,7 +61,7 @@ class DecryptProxy implements Decrypt {
     /*
     * Calculate required buffer length to hold the decrypted data.
      */
-    public Integer decryptedLen(Integer dataLen) {
+    public int decryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.decrypt_decryptedLen(this.cCtx, dataLen);
     }
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -61,28 +61,28 @@ class PublicKeyProxy implements PublicKey {
     /*
     * Length of the key in bytes.
      */
-    public Integer keyLen() {
+    public int keyLen() {
         return FoundationJNI.INSTANCE.key_keyLen(this.cCtx);
     }
 
     /*
     * Length of the key in bits.
      */
-    public Integer keyBitlen() {
+    public int keyBitlen() {
         return FoundationJNI.INSTANCE.key_keyBitlen(this.cCtx);
     }
 
     /*
     * Define whether a public key can be exported or not.
      */
-    public Boolean getCanExportPublicKey() {
+    public boolean getCanExportPublicKey() {
         return FoundationJNI.INSTANCE.publicKey_getCanExportPublicKey(this.cCtx);
     }
 
     /*
     * Defines whether a public key can be imported or not.
      */
-    public Boolean getCanImportPublicKey() {
+    public boolean getCanImportPublicKey() {
         return FoundationJNI.INSTANCE.publicKey_getCanImportPublicKey(this.cCtx);
     }
 
@@ -100,7 +100,7 @@ class PublicKeyProxy implements PublicKey {
     /*
     * Return length in bytes required to hold exported public key.
      */
-    public Integer exportedPublicKeyLen() {
+    public int exportedPublicKeyLen() {
         return FoundationJNI.INSTANCE.publicKey_exportedPublicKeyLen(this.cCtx);
     }
 

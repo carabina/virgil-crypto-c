@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -60,7 +60,7 @@ public class EntropyAccumulator implements Defaults, EntropySource {
         this.cCtx = cCtx;
     }
 
-    public Integer getSourcesMax() {
+    public int getSourcesMax() {
         return 15;
     }
 
@@ -69,7 +69,7 @@ public class EntropyAccumulator implements Defaults, EntropySource {
     * Threshold defines minimum number of bytes that must be gathered
     * from the source during accumulation.
      */
-    public void addSource(EntropySource source, Integer threshold) {
+    public void addSource(EntropySource source, int threshold) {
         FoundationJNI.INSTANCE.entropyAccumulator_addSource(this.cCtx, source, threshold);
     }
 
@@ -83,14 +83,14 @@ public class EntropyAccumulator implements Defaults, EntropySource {
     /*
     * Defines that implemented source is strong.
      */
-    public Boolean isStrong() {
+    public boolean isStrong() {
         return FoundationJNI.INSTANCE.entropyAccumulator_isStrong(this.cCtx);
     }
 
     /*
     * Gather entropy of the requested length.
      */
-    public byte[] gather(Integer len) {
+    public byte[] gather(int len) {
         return FoundationJNI.INSTANCE.entropyAccumulator_gather(this.cCtx, len);
     }
 }

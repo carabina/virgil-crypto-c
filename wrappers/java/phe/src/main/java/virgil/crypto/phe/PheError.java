@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -69,7 +69,11 @@ public enum PheError {
     /*
     * Invalid private key
      */
-    INVALID_PRIVATE_KEY(6);
+    INVALID_PRIVATE_KEY(6),
+    /*
+    * AES error occurred
+     */
+    AES_ERROR(7);
 
     private final int code;
 

@@ -43,7 +43,7 @@ public class PythiaJNI {
     public static final PythiaJNI INSTANCE;
 
     static {
-        NativeUtils.load();
+        NativeUtils.load("vscp_pythia");
         INSTANCE = new PythiaJNI();
     }
 

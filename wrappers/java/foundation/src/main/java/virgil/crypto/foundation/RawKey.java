@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -41,7 +41,7 @@ import virgil.crypto.common.*;
 /*
 * Provide implementation agnostic representation of the asymmetric key.
  */
-public class RawKey {
+public class RawKey implements AutoCloseable {
 
     public long cCtx;
 
@@ -58,6 +58,11 @@ public class RawKey {
     public RawKey(long cCtx) {
         super();
         this.cCtx = cCtx;
+    }
+
+    /* Close resource. */
+    public void close() {
+        FoundationJNI.INSTANCE.rawKey_close(this.cCtx);
     }
 
     /*

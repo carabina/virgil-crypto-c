@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -61,14 +61,14 @@ class KeyProxy implements Key {
     /*
     * Length of the key in bytes.
      */
-    public Integer keyLen() {
+    public int keyLen() {
         return FoundationJNI.INSTANCE.key_keyLen(this.cCtx);
     }
 
     /*
     * Length of the key in bits.
      */
-    public Integer keyBitlen() {
+    public int keyBitlen() {
         return FoundationJNI.INSTANCE.key_keyBitlen(this.cCtx);
     }
 }

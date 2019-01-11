@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,14 +54,14 @@ class EntropySourceProxy implements EntropySource {
     /*
     * Defines that implemented source is strong.
      */
-    public Boolean isStrong() {
+    public boolean isStrong() {
         return FoundationJNI.INSTANCE.entropySource_isStrong(this.cCtx);
     }
 
     /*
     * Gather entropy of the requested length.
      */
-    public byte[] gather(Integer len) {
+    public byte[] gather(int len) {
         return FoundationJNI.INSTANCE.entropySource_gather(this.cCtx, len);
     }
 }

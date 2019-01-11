@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,12 +46,12 @@ public interface PrivateKey extends Key {
     /*
     * Define whether a private key can be exported or not.
      */
-    Boolean getCanExportPrivateKey() ;
+    boolean getCanExportPrivateKey() ;
 
     /*
     * Define whether a private key can be imported or not.
      */
-    Boolean getCanImportPrivateKey() ;
+    boolean getCanImportPrivateKey() ;
 
     /*
     * Extract public part of the key.
@@ -70,7 +70,7 @@ public interface PrivateKey extends Key {
     /*
     * Return length in bytes required to hold exported private key.
      */
-    Integer exportedPrivateKeyLen() ;
+    int exportedPrivateKeyLen() ;
 
     /*
     * Import private key from the binary format.

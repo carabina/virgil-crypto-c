@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,7 +54,7 @@ class AuthEncryptProxy implements AuthEncrypt {
     /*
     * Defines authentication tag length in bytes.
      */
-    public Integer getAuthTagLen() {
+    public int getAuthTagLen() {
         return FoundationJNI.INSTANCE.cipherAuthInfo_getAuthTagLen(this.cCtx);
     }
 
@@ -69,7 +69,7 @@ class AuthEncryptProxy implements AuthEncrypt {
     /*
     * Calculate required buffer length to hold the authenticated encrypted data.
      */
-    public Integer authEncryptedLen(Integer dataLen) {
+    public int authEncryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.authEncrypt_authEncryptedLen(this.cCtx, dataLen);
     }
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,6 +46,6 @@ public interface Kdf {
     /*
     * Derive key of the requested length from the given data.
      */
-    byte[] derive(byte[] data, Integer keyLen) ;
+    byte[] derive(byte[] data, int keyLen) ;
 }
 

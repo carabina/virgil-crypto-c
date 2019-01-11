@@ -34,79 +34,92 @@
 * Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
  */
 
-package virgil.crypto.foundation;
+package virgil.crypto.phe;
 
 import virgil.crypto.common.*;
 
+import virgil.crypto.foundation.*;
+
 /*
-* This is MbedTLS implementation of SHA384.
+* Class for encryption using PHE account key
+* This class is thread-safe.
  */
-public class Sha384 implements HashInfo, Hash, HashStream {
+public class PheCipher implements AutoCloseable {
 
     public long cCtx;
 
     /* Create underlying C context. */
-    public Sha384() {
+    public PheCipher() {
         super();
-        this.cCtx = FoundationJNI.INSTANCE.sha384_new();
+        this.cCtx = PheJNI.INSTANCE.pheCipher_new();
     }
 
     /*
     * Acquire C context.
     * Note. This method is used in generated code only, and SHOULD NOT be used in another way.
     */
-    public Sha384(long cCtx) {
+    public PheCipher(long cCtx) {
         super();
         this.cCtx = cCtx;
     }
 
-    /*
-    * Length of the digest (hashing output) in bytes.
-     */
-    public int getDigestLen() {
-        return 48;
+    public int getSaltLen() {
+        return 32;
+    }
+
+    public int getKeyLen() {
+        return 32;
+    }
+
+    public int getNonceLen() {
+        return 12;
+    }
+
+    /* Close resource. */
+    public void close() {
+        PheJNI.INSTANCE.pheCipher_close(this.cCtx);
     }
 
     /*
-    * Block length of the digest function in bytes.
+    * Random used for salt generation
      */
-    public int getBlockLen() {
-        return 128;
+    public void setRandom(Random random) {
+        /* Java code */
     }
 
     /*
-    * Return implemented hash algorithm type.
+    * Setups dependencies with default values.
      */
-    public HashAlg alg() {
-        return FoundationJNI.INSTANCE.sha384_alg(this.cCtx);
+    public void setupDefaults() {
+        PheJNI.INSTANCE.pheCipher_setupDefaults(this.cCtx);
     }
 
     /*
-    * Calculate hash over given data.
+    * Returns buffer capacity needed to fit cipher text
      */
-    public byte[] hash(byte[] data) {
-        return FoundationJNI.INSTANCE.sha384_hash(this.cCtx, data);
+    public int encryptLen(int plainTextLen) {
+        return PheJNI.INSTANCE.pheCipher_encryptLen(this.cCtx, plainTextLen);
     }
 
     /*
-    * Start a new hashing.
+    * Returns buffer capacity needed to fit plain text
      */
-    public void start() {
-        FoundationJNI.INSTANCE.sha384_start(this.cCtx);
+    public int decryptLen(int cipherTextLen) {
+        return PheJNI.INSTANCE.pheCipher_decryptLen(this.cCtx, cipherTextLen);
     }
 
     /*
-    * Add given data to the hash.
+    * Encrypts data using account key
      */
-    public void update(byte[] data) {
-        FoundationJNI.INSTANCE.sha384_update(this.cCtx, data);
+    public byte[] encrypt(byte[] plainText, byte[] accountKey) {
+        return PheJNI.INSTANCE.pheCipher_encrypt(this.cCtx, plainText, accountKey);
     }
 
     /*
-    * Accompilsh hashing and return it's result (a message digest).
+    * Decrypts data using account key
      */
-    public byte[] finish() {
-        return FoundationJNI.INSTANCE.sha384_finish(this.cCtx);
+    public byte[] decrypt(byte[] cipherText, byte[] accountKey) {
+        return PheJNI.INSTANCE.pheCipher_decrypt(this.cCtx, cipherText, accountKey);
     }
 }
 

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -61,7 +61,7 @@ class SignProxy implements Sign {
     /*
     * Return length in bytes required to hold signature.
      */
-    public Integer signatureLen() {
+    public int signatureLen() {
         return FoundationJNI.INSTANCE.sign_signatureLen(this.cCtx);
     }
 }

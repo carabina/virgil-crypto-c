@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -60,7 +60,7 @@ public class Hkdf implements SaltedKdf {
         this.cCtx = cCtx;
     }
 
-    public Integer getHashCounterMax() {
+    public int getHashCounterMax() {
         return 255;
     }
 
@@ -71,7 +71,7 @@ public class Hkdf implements SaltedKdf {
     /*
     * Derive key of the requested length from the given data, salt and info.
      */
-    public byte[] derive(byte[] data, byte[] salt, byte[] info, Integer keyLen) {
+    public byte[] derive(byte[] data, byte[] salt, byte[] info, int keyLen) {
         return FoundationJNI.INSTANCE.hkdf_derive(this.cCtx, data, salt, info, keyLen);
     }
 }

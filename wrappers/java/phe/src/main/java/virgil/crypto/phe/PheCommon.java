@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -45,57 +45,71 @@ public class PheCommon {
     /*
     * PHE elliptic curve point binary length
      */
-    public Integer getPhePointLength() {
+    public int getPhePointLength() {
         return 65;
     }
 
     /*
     * PHE max password length
      */
-    public Integer getPheMaxPasswordLength() {
+    public int getPheMaxPasswordLength() {
         return 128;
     }
 
     /*
     * PHE server identifier length
      */
-    public Integer getPheServerIdentifierLength() {
+    public int getPheServerIdentifierLength() {
         return 32;
     }
 
     /*
     * PHE client identifier length
      */
-    public Integer getPheClientIdentifierLength() {
+    public int getPheClientIdentifierLength() {
         return 32;
     }
 
     /*
     * PHE account key length
      */
-    public Integer getPheAccountKeyLength() {
+    public int getPheAccountKeyLength() {
         return 32;
     }
 
     /*
     * PHE private key length
      */
-    public Integer getPhePrivateKeyLength() {
+    public int getPhePrivateKeyLength() {
         return 32;
     }
 
     /*
     * PHE public key length
      */
-    public Integer getPhePublicKeyLength() {
+    public int getPhePublicKeyLength() {
         return 65;
     }
 
     /*
     * PHE hash length
      */
-    public Integer getPheHashLen() {
+    public int getPheHashLen() {
         return 32;
+    }
+
+    /*
+    * Maximum data size to encrypt
+     */
+    public int getPheMaxEncryptLen() {
+        return 1024 * 1024 - 64;
+    }
+
+    /*
+    * Maximum data size to decrypt
+     */
+    public int getPheMaxDecryptLen() {
+        return 1024 * 1024;
     }
 }
 

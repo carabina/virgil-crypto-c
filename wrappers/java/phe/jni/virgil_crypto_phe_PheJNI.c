@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <virgil/crypto/phe/vsce_phe_cipher.h>
 #include <virgil/crypto/phe/vsce_phe_client.h>
 #include <virgil/crypto/phe/vsce_phe_server.h>
 #include "virgil_crypto_phe_PheJNI.h"
@@ -10,6 +11,14 @@
  */
 JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_errorCtx_1new
   (JNIEnv *jenv, jobject jobj);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    errorCtx_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_errorCtx_1close
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx);
 
 /*
  * Class:     virgil_crypto_phe_PheJNI
@@ -37,6 +46,16 @@ JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_errorCtx_1error
 JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1new
   (JNIEnv *jenv, jobject jobj) {
 	  return vsce_phe_server_new();
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheServer_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1close
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
+	  vsce_phe_server_delete(c_ctx);
 }
 
 /*
@@ -83,11 +102,12 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1generateServe
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheServer_enrollmentResponseLen
- * Signature: (J)Ljava/lang/Integer;
+  * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1enrollmentResponseLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1enrollmentResponseLen
     (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
-		return NULL;
+
+  return 0;
 }
 
 /*
@@ -128,11 +148,12 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1getEnrollm
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheServer_verifyPasswordResponseLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1verifyPasswordResponseLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1verifyPasswordResponseLen
   (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
-	  return NULL;
+
+  return 0;
 }
 
 /*
@@ -176,11 +197,12 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1verifyPass
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheServer_updateTokenLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1updateTokenLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1updateTokenLen
   (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
-	  return NULL;
+
+  return 0;
 }
 
 /*
@@ -253,6 +275,16 @@ JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1new
 
 /*
  * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheClient_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1close
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
+	  vsce_phe_client_delete(c_ctx);
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheClient_setKeys
  * Signature: (J[B[B)V
  */
@@ -299,11 +331,12 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1generateCl
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheClient_enrollmentRecordLen
- * Signature: (J)Ljava/lang/Integer;
+  * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1enrollmentRecordLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1enrollmentRecordLen
   (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
-	  return NULL;
+
+  return 0;
 }
 
 /*
@@ -363,11 +396,12 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1enrollAccount
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheClient_verifyPasswordRequestLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1verifyPasswordRequestLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1verifyPasswordRequestLen
   (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
-	  return NULL;
+
+  return 0;
 }
 
 /*
@@ -522,6 +556,129 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1updateEnro
 
   // Free resources
   vsc_buffer_delete(new_enrollment_record);
+
+  return ret;
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_new
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1new
+  (JNIEnv *jenv, jobject jobj) {
+
+  return vsce_phe_cipher_new();
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1close
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
+
+  vsce_phe_cipher_delete(c_ctx);
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_setupDefaults
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1setupDefaults
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx) {
+
+  vsce_phe_cipher_setup_defaults(c_ctx);
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_encryptLen
+  * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1encryptLen
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx, jint jplainTextLen) {
+
+  return 0;
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_decryptLen
+  * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1decryptLen
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx, jint jcipherTextLen) {
+
+  return 0;
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_encrypt
+ * Signature: (J[B[B)[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1encrypt
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx, jbyteArray jplainText, jbyteArray jaccountKey) {
+
+  vsc_data_t plain_text = vsc_data(
+    (*jenv)->GetByteArrayElements(jenv, jplainText, JNI_FALSE),
+    (*jenv)->GetArrayLength(jenv, jplainText));
+
+  vsc_data_t account_key = vsc_data(
+    (*jenv)->GetByteArrayElements(jenv, jaccountKey, JNI_FALSE),
+    (*jenv)->GetArrayLength(jenv, jaccountKey));
+
+  vsc_buffer_t *cipher_text = vsc_buffer_new_with_capacity(vsce_phe_cipher_encrypt_len(c_ctx, plain_text.len));
+
+  vsce_error_t status = vsce_phe_cipher_encrypt(c_ctx, plain_text, account_key, cipher_text);
+
+  //TODO Handle error
+  if(status != vsce_SUCCESS) {
+    return NULL;
+  }
+  
+  jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(cipher_text));
+  (*jenv)->SetByteArrayRegion (jenv, ret, 0, vsc_buffer_len(cipher_text), vsc_buffer_bytes(cipher_text));
+
+  // Free resources
+  vsc_buffer_delete(cipher_text);
+
+  return ret;
+}
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_decrypt
+ * Signature: (J[B[B)[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1decrypt
+  (JNIEnv *jenv, jobject jobj, jlong c_ctx, jbyteArray jcipherText, jbyteArray jaccountKey) {
+
+  vsc_data_t cipher_text = vsc_data(
+    (*jenv)->GetByteArrayElements(jenv, jcipherText, JNI_FALSE),
+    (*jenv)->GetArrayLength(jenv, jcipherText));
+
+  vsc_data_t account_key = vsc_data(
+    (*jenv)->GetByteArrayElements(jenv, jaccountKey, JNI_FALSE),
+    (*jenv)->GetArrayLength(jenv, jaccountKey));
+
+  vsc_buffer_t *plain_text = vsc_buffer_new_with_capacity(vsce_phe_cipher_decrypt_len(c_ctx, cipher_text.len));
+
+  vsce_error_t status = vsce_phe_cipher_decrypt(c_ctx, cipher_text, account_key, plain_text);
+
+  //TODO Handle error
+  if(status != vsce_SUCCESS) {
+    return NULL;
+  }
+  
+  jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(plain_text));
+  (*jenv)->SetByteArrayRegion (jenv, ret, 0, vsc_buffer_len(plain_text), vsc_buffer_bytes(plain_text));
+
+  // Free resources
+  vsc_buffer_delete(plain_text);
 
   return ret;
 }

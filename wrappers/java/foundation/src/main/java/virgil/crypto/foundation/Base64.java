@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,7 +46,7 @@ public class Base64 {
     /*
     * Calculate length in bytes required to hold an encoded base64 string.
      */
-    public Integer encodedLen(Integer dataLen) {
+    public int encodedLen(int dataLen) {
         return FoundationJNI.INSTANCE.base64_encodedLen(dataLen);
     }
 
@@ -61,7 +61,7 @@ public class Base64 {
     /*
     * Calculate length in bytes required to hold a decoded base64 string.
      */
-    public Integer decodedLen(Integer strLen) {
+    public int decodedLen(int strLen) {
         return FoundationJNI.INSTANCE.base64_decodedLen(strLen);
     }
 

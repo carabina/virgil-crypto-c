@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -61,28 +61,28 @@ class PrivateKeyProxy implements PrivateKey {
     /*
     * Length of the key in bytes.
      */
-    public Integer keyLen() {
+    public int keyLen() {
         return FoundationJNI.INSTANCE.key_keyLen(this.cCtx);
     }
 
     /*
     * Length of the key in bits.
      */
-    public Integer keyBitlen() {
+    public int keyBitlen() {
         return FoundationJNI.INSTANCE.key_keyBitlen(this.cCtx);
     }
 
     /*
     * Define whether a private key can be exported or not.
      */
-    public Boolean getCanExportPrivateKey() {
+    public boolean getCanExportPrivateKey() {
         return FoundationJNI.INSTANCE.privateKey_getCanExportPrivateKey(this.cCtx);
     }
 
     /*
     * Define whether a private key can be imported or not.
      */
-    public Boolean getCanImportPrivateKey() {
+    public boolean getCanImportPrivateKey() {
         return FoundationJNI.INSTANCE.privateKey_getCanImportPrivateKey(this.cCtx);
     }
 
@@ -107,7 +107,7 @@ class PrivateKeyProxy implements PrivateKey {
     /*
     * Return length in bytes required to hold exported private key.
      */
-    public Integer exportedPrivateKeyLen() {
+    public int exportedPrivateKeyLen() {
         return FoundationJNI.INSTANCE.privateKey_exportedPrivateKeyLen(this.cCtx);
     }
 

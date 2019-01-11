@@ -196,9 +196,9 @@ function java_derive_constant_type (instance, wrapper)
     check_arguments (my, "instance, wrapper", my)
 
     if my.instance.type = "boolean"
-        return "Boolean"
+        return "boolean"
     else
-        return "Integer"
+        return "int"
     endif
 endfunction
 
@@ -220,21 +220,21 @@ endfunction
 function java_derive_integer_type (size)
     if defined (my.size)
         if my.size = "1"
-            return "Byte"
+            return "byte"
 
         elsif my.size = "2"
-            return "Short"
+            return "short"
 
         elsif my.size = "4"
-            return "Integer"
+            return "int"
 
         elsif my.size = "8"
-            return "Long"
+            return "long"
         else
             echo_fatal ("Unsupported size $(my.size:) for Java integers", my)
         endif
     else
-        return "Integer"
+        return "int"
     endif
 endfunction
 
@@ -245,22 +245,22 @@ endfunction
 function java_derive_unsigned_type (size)
     if defined (my.size)
         if my.size = "1"
-            return "Short"
+            return "short"
 
         elsif my.size = "2"
-            return "Integer"
+            return "int"
 
         elsif my.size = "4"
-            return "Long"
+            return "long"
 
         elsif my.size = "8"
             #TODO 64bit unsigned type available from Java 8
-            return "Long"
+            return "long"
         else
             echo_fatal ("Unsupported size $(my.size:) of unsigned type for Java integers", my)
         endif
     else
-        return "Long"
+        return "long"
     endif
 endfunction
 
@@ -368,6 +368,22 @@ function java_derive_enum_name (enum, wrapper)
 endfunction
 
 # ---------------------------------------------------------------------------
+#   Return formatted name of the Java exception.
+# ---------------------------------------------------------------------------
+function java_derive_exception_name (enum, wrapper)
+    check_arguments (my, "enum, wrapper", my)
+
+    assert_attribute_one_of (my.enum, "name", my)
+
+    if my.enum.name = "error"
+        return "$(my.wrapper.project:Pascal)Exception"
+    else
+        return "$(my.enum.name:Pascal)Exception"
+    endif
+
+endfunction
+
+# ---------------------------------------------------------------------------
 #   Return formatted argument name from raw name.
 # ---------------------------------------------------------------------------
 function java_derive_argument_name_str (name, wrapper)
@@ -396,7 +412,7 @@ function java_derive_instance_type (instance)
             my.primitive_type = "void"
 
         elsif my.instance.type = "boolean"
-            my.primitive_type = "Boolean"
+            my.primitive_type = "boolean"
 
         elsif my.instance.type = "integer"
             my.primitive_type = java_derive_integer_type (my.instance.size ?)
@@ -405,10 +421,10 @@ function java_derive_instance_type (instance)
             my.primitive_type = java_derive_unsigned_type (my.instance.size ?)
 
         elsif my.instance.type = "byte"
-            my.primitive_type = "Byte"
+            my.primitive_type = "byte"
 
         elsif my.instance.type = "size"
-            my.primitive_type = "Integer"
+            my.primitive_type = "int"
 
         elsif my.instance.type = "char"
             my.primitive_type = "String"
@@ -1356,29 +1372,62 @@ function java_create_class_constructor (class, constructor, destination, wrapper
 endfunction
 
 # ---------------------------------------------------------------------------
-#   Create <java_destructor/>.
+#   Create <java_close/>.
 # ---------------------------------------------------------------------------
-function java_create_class_close (java_class, class, wrapper, meta)
-    check_arguments (my, "java_class, class, wrapper, meta", my)
+function java_create_class_close (java_class, class, wrappers_destination, wrapper, meta)
+    check_arguments (my, "java_class, class, wrappers_destination, wrapper, meta", my)
+    
+    java_create_jni_class_close (my.class, my.wrappers_destination, my.wrapper, my.meta)
 
-    my.self_ctx = "self.c_ctx"
-
-    if string_in (my.class.context, "public") & string_in (my.class.lifecycle, "none")
-        my.dtor_invocation = ".(c_global_method_dealloc)($(my.self_ctx:))"
-    else
-        my.dtor_invocation = "$(class_derive_c_destructor (my.class))($(my.self_ctx:))"
-    endif
-
-
-    new java_destructor to my.java_class
-        . = "/// Release underlying C context."
-
-        new java_code to java_destructor
-            . = "\
-                $(my.dtor_invocation:)
-            "
-        endnew
+    new java_implement to my.java_class
+        .type = "AutoCloseable"
     endnew
+
+    new java_method to my.java_class
+        . = "/* Close resource. */"
+        .name = "close"
+        .throws = "0"
+        .visibility = "public"
+
+        new java_code to java_method
+            . = "$(java_derive_jni_context_class_name(my.wrapper):).INSTANCE.$(my.class.name:Camel)_$(java_method.name:)(this.cCtx);"
+        endnew
+
+        return java_method
+    endnew
+endfunction
+
+function java_create_jni_class_close (class, wrappers_destination, wrapper, meta)
+    check_arguments (my, "class, wrappers_destination, wrapper, meta", my)
+    
+    echo_debug ("Create JNI method 'close' for class '$(my.class.name:Camel)'", my)
+    
+    # Obtain JNI class
+    my.jni_context_class_name = java_derive_jni_context_class_name(my.wrapper)
+    my.jni_module = my.wrappers_destination->java_module(java_module.name = my.jni_context_class_name)?
+    my.jni_context_class = my.jni_module->java_class
+
+    # Build Java method
+    my.jni_method_name = "$(my.class.name:Camel)_close"
+    
+    # Create method if it doesn't exist
+    if ! defined (my.jni_context_class->java_method(java_method.name = my.jni_method_name)?)
+
+        # Create declaration
+        new java_method to my.jni_context_class
+            #TODO insert description
+            . = ""
+            .name = my.jni_method_name
+            .visibility = "public"
+            .native = "1"
+            .throws = "0"
+        
+            java_create_c_context_argument (java_method, my.wrapper, my.meta)
+
+            return java_method
+        endnew
+
+    endif
 endfunction
 
 # ---------------------------------------------------------------------------
@@ -1657,6 +1706,46 @@ function java_create_enum_module (enum, destination, wrapper, meta)
 endfunction
 
 # ---------------------------------------------------------------------------
+#   Create module with Java exception from the abstract 'enum' notion.
+# ---------------------------------------------------------------------------
+function java_create_exception_module (enum, destination, wrapper, meta)
+    check_arguments (my, "enum, destination, wrapper, meta", my)
+
+    echo_info ("Create <java_module/> from enum: '$(my.enum.name:)'", my)
+
+    assert_attribute (my.enum, "name", my)
+
+    new java_module to my.destination
+        .name = java_derive_exception_name (my.enum, my.wrapper)
+        .package = my.wrapper.package
+        .package_dir = my.wrapper.package_dir
+        .source_file_name = 0.name + ".java"
+        .source_file_path = cat_path (my.wrapper.source_dir, 0.source_file_name)
+
+        new java_license to java_module
+            . = java_format_license (my.wrapper->license) ?
+        endnew
+
+        for my.wrapper.java_import
+            copy java_import to java_module
+        endfor
+
+        new java_class to java_module
+            . = java_format_description (my.enum) ?
+            .name = java_derive_exception_name (my.enum, my.wrapper)
+
+            java_map_attr_visibility (java_class, my.enum)
+            java_map_attr_scope (java_class, my.enum)
+
+            #TODO handle error
+            java_map_enum_default (java_class, my.enum, my.wrapper, my.meta)
+        endnew
+    endnew
+
+    echo_debug ("Done", my)
+endfunction
+
+# ---------------------------------------------------------------------------
 #   Create module with Java interface from the abstract 'interface' notion.
 # ---------------------------------------------------------------------------
 function java_create_interface_module (interface, destination, wrapper, meta)
@@ -1797,7 +1886,7 @@ function java_create_class_module (class, destination, wrapper, meta)
             if ! string_in (my.class.context, "none")
                 java_create_class_field_context (java_class, my.class)
                 java_create_class_default_constructor (java_class, my.class, my.destination, my.wrapper, my.meta)
-                #java_create_class_close (java_class, my.class, my.wrapper, my.meta)
+                java_create_class_close (java_class, my.class, my.destination, my.wrapper, my.meta)
 
                 if ! string_in (my.class.lifecycle, "none")
                     for my.class.constructor

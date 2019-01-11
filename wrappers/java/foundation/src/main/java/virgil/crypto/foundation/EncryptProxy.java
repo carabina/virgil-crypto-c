@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -61,7 +61,7 @@ class EncryptProxy implements Encrypt {
     /*
     * Calculate required buffer length to hold the encrypted data.
      */
-    public Integer encryptedLen(Integer dataLen) {
+    public int encryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.encrypt_encryptedLen(this.cCtx, dataLen);
     }
 }

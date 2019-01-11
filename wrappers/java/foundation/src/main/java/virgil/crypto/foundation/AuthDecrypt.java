@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -52,6 +52,6 @@ public interface AuthDecrypt extends CipherAuthInfo {
     /*
     * Calculate required buffer length to hold the authenticated decrypted data.
      */
-    Integer authDecryptedLen(Integer dataLen) ;
+    int authDecryptedLen(int dataLen) ;
 }
 

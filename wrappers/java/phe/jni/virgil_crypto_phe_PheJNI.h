@@ -17,6 +17,14 @@ JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_errorCtx_1new
 
 /*
  * Class:     virgil_crypto_phe_PheJNI
+ * Method:    errorCtx_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_errorCtx_1close
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
  * Method:    errorCtx_reset
  * Signature: (J)V
  */
@@ -41,6 +49,14 @@ JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1new
 
 /*
  * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheServer_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1close
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheServer_generateServerKeyPair
  * Signature: (J)Lvirgil/crypto/phe/PheServerGenerateServerKeyPairResult;
  */
@@ -50,9 +66,9 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1generateServe
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheServer_enrollmentResponseLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1enrollmentResponseLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1enrollmentResponseLen
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -66,9 +82,9 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1getEnrollm
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheServer_verifyPasswordResponseLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1verifyPasswordResponseLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1verifyPasswordResponseLen
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -82,9 +98,9 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1verifyPass
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheServer_updateTokenLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1updateTokenLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1updateTokenLen
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -105,6 +121,14 @@ JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1new
 
 /*
  * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheClient_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1close
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheClient_setKeys
  * Signature: (J[B[B)V
  */
@@ -122,9 +146,9 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1generateCl
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheClient_enrollmentRecordLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1enrollmentRecordLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1enrollmentRecordLen
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -138,9 +162,9 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1enrollAccount
 /*
  * Class:     virgil_crypto_phe_PheJNI
  * Method:    pheClient_verifyPasswordRequestLen
- * Signature: (J)Ljava/lang/Integer;
+ * Signature: (J)I
  */
-JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1verifyPasswordRequestLen
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1verifyPasswordRequestLen
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -173,6 +197,62 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1rotateKeys
  * Signature: (J[B[B)[B
  */
 JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1updateEnrollmentRecord
+  (JNIEnv *, jobject, jlong, jbyteArray, jbyteArray);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_new
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1new
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1close
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_setupDefaults
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1setupDefaults
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_encryptLen
+ * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1encryptLen
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_decryptLen
+ * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1decryptLen
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_encrypt
+ * Signature: (J[B[B)[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1encrypt
+  (JNIEnv *, jobject, jlong, jbyteArray, jbyteArray);
+
+/*
+ * Class:     virgil_crypto_phe_PheJNI
+ * Method:    pheCipher_decrypt
+ * Signature: (J[B[B)[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1decrypt
   (JNIEnv *, jobject, jlong, jbyteArray, jbyteArray);
 
 #ifdef __cplusplus

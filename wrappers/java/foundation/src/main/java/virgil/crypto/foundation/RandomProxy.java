@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,7 +54,7 @@ class RandomProxy implements Random {
     /*
     * Generate random bytes.
      */
-    public byte[] random(Integer dataLen) {
+    public byte[] random(int dataLen) {
         return FoundationJNI.INSTANCE.random_random(this.cCtx, dataLen);
     }
 

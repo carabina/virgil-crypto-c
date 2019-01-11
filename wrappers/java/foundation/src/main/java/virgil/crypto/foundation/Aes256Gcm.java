@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -72,7 +72,7 @@ public class Aes256Gcm implements Encrypt, Decrypt, CipherInfo, Cipher, CipherAu
     /*
     * Calculate required buffer length to hold the encrypted data.
      */
-    public Integer encryptedLen(Integer dataLen) {
+    public int encryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.aes256Gcm_encryptedLen(this.cCtx, dataLen);
     }
 
@@ -86,35 +86,35 @@ public class Aes256Gcm implements Encrypt, Decrypt, CipherInfo, Cipher, CipherAu
     /*
     * Calculate required buffer length to hold the decrypted data.
      */
-    public Integer decryptedLen(Integer dataLen) {
+    public int decryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.aes256Gcm_decryptedLen(this.cCtx, dataLen);
     }
 
     /*
     * Cipher nfonce length or IV length in bytes, or 0 if nonce is not required.
      */
-    public Integer getNonceLen() {
+    public int getNonceLen() {
         return 12;
     }
 
     /*
     * Cipher key length in bytes.
      */
-    public Integer getKeyLen() {
+    public int getKeyLen() {
         return 32;
     }
 
     /*
     * Cipher key length in bits.
      */
-    public Integer getKeyBitlen() {
+    public int getKeyBitlen() {
         return 256;
     }
 
     /*
     * Cipher block length in bytes.
      */
-    public Integer getBlockLen() {
+    public int getBlockLen() {
         return 16;
     }
 
@@ -135,7 +135,7 @@ public class Aes256Gcm implements Encrypt, Decrypt, CipherInfo, Cipher, CipherAu
     /*
     * Defines authentication tag length in bytes.
      */
-    public Integer getAuthTagLen() {
+    public int getAuthTagLen() {
         return 16;
     }
 
@@ -150,7 +150,7 @@ public class Aes256Gcm implements Encrypt, Decrypt, CipherInfo, Cipher, CipherAu
     /*
     * Calculate required buffer length to hold the authenticated encrypted data.
      */
-    public Integer authEncryptedLen(Integer dataLen) {
+    public int authEncryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.aes256Gcm_authEncryptedLen(this.cCtx, dataLen);
     }
 
@@ -165,7 +165,7 @@ public class Aes256Gcm implements Encrypt, Decrypt, CipherInfo, Cipher, CipherAu
     /*
     * Calculate required buffer length to hold the authenticated decrypted data.
      */
-    public Integer authDecryptedLen(Integer dataLen) {
+    public int authDecryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.aes256Gcm_authDecryptedLen(this.cCtx, dataLen);
     }
 }

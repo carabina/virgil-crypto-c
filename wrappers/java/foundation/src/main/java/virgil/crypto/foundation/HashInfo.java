@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,12 +46,12 @@ public interface HashInfo {
     /*
     * Length of the digest (hashing output) in bytes.
      */
-    Integer getDigestLen() ;
+    int getDigestLen() ;
 
     /*
     * Block length of the digest function in bytes.
      */
-    Integer getBlockLen() ;
+    int getBlockLen() ;
 
     /*
     * Return implemented hash algorithm type.

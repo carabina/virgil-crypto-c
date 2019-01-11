@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -58,73 +58,73 @@ public interface Asn1Reader {
     /*
     * Get tag of the current ASN.1 element.
      */
-    Integer getTag() ;
+    int getTag() ;
 
     /*
     * Get length of the current ASN.1 element.
      */
-    Integer getLen() ;
+    int getLen() ;
 
     /*
     * Read ASN.1 type: TAG.
     * Return element length.
      */
-    Integer readTag(Integer tag) ;
+    int readTag(int tag) ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Integer readInt() ;
+    int readInt() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Byte readInt8() ;
+    byte readInt8() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Short readInt16() ;
+    short readInt16() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Integer readInt32() ;
+    int readInt32() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Long readInt64() ;
+    long readInt64() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Long readUint() ;
+    long readUint() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Short readUint8() ;
+    short readUint8() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Integer readUint16() ;
+    int readUint16() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Long readUint32() ;
+    long readUint32() ;
 
     /*
     * Read ASN.1 type: INTEGER.
      */
-    Long readUint64() ;
+    long readUint64() ;
 
     /*
     * Read ASN.1 type: BOOLEAN.
      */
-    Boolean readBool() ;
+    boolean readBool() ;
 
     /*
     * Read ASN.1 type: NULL.
@@ -154,18 +154,18 @@ public interface Asn1Reader {
     /*
     * Read raw data of given length.
      */
-    byte[] readData(Integer len) ;
+    byte[] readData(int len) ;
 
     /*
     * Read ASN.1 type: CONSTRUCTED | SEQUENCE.
     * Return element length.
      */
-    Integer readSequence() ;
+    int readSequence() ;
 
     /*
     * Read ASN.1 type: CONSTRUCTED | SET.
     * Return element length.
      */
-    Integer readSet() ;
+    int readSet() ;
 }
 

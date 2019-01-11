@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -56,7 +56,7 @@ class KeySerializerProxy implements KeySerializer {
     *
     * Precondition: public key must be exportable.
      */
-    public Integer serializedPublicKeyLen(PublicKey publicKey) {
+    public int serializedPublicKeyLen(PublicKey publicKey) {
         return FoundationJNI.INSTANCE.keySerializer_serializedPublicKeyLen(this.cCtx, publicKey);
     }
 
@@ -74,7 +74,7 @@ class KeySerializerProxy implements KeySerializer {
     *
     * Precondition: private key must be exportable.
      */
-    public Integer serializedPrivateKeyLen(PrivateKey privateKey) {
+    public int serializedPrivateKeyLen(PrivateKey privateKey) {
         return FoundationJNI.INSTANCE.keySerializer_serializedPrivateKeyLen(this.cCtx, privateKey);
     }
 

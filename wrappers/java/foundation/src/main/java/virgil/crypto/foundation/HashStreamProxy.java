@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,14 +54,14 @@ class HashStreamProxy implements HashStream {
     /*
     * Length of the digest (hashing output) in bytes.
      */
-    public Integer getDigestLen() {
+    public int getDigestLen() {
         return FoundationJNI.INSTANCE.hashInfo_getDigestLen(this.cCtx);
     }
 
     /*
     * Block length of the digest function in bytes.
      */
-    public Integer getBlockLen() {
+    public int getBlockLen() {
         return FoundationJNI.INSTANCE.hashInfo_getBlockLen(this.cCtx);
     }
 

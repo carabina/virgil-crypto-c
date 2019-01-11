@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -46,7 +46,7 @@ public class Pem {
     /*
     * Return length in bytes required to hold wrapped PEM format.
      */
-    public Integer wrappedLen(String title, Integer dataLen) {
+    public int wrappedLen(String title, int dataLen) {
         return FoundationJNI.INSTANCE.pem_wrappedLen(title, dataLen);
     }
 
@@ -62,7 +62,7 @@ public class Pem {
     /*
     * Return length in bytes required to hold unwrapped binary.
      */
-    public Integer unwrappedLen(Integer pemLen) {
+    public int unwrappedLen(int pemLen) {
         return FoundationJNI.INSTANCE.pem_unwrappedLen(pemLen);
     }
 

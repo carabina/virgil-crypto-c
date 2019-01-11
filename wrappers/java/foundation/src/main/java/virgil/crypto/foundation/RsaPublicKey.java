@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -83,14 +83,14 @@ public class RsaPublicKey implements Key, Encrypt, Verify, PublicKey {
     /*
     * Length of the key in bytes.
      */
-    public Integer keyLen() {
+    public int keyLen() {
         return FoundationJNI.INSTANCE.rsaPublicKey_keyLen(this.cCtx);
     }
 
     /*
     * Length of the key in bits.
      */
-    public Integer keyBitlen() {
+    public int keyBitlen() {
         return FoundationJNI.INSTANCE.rsaPublicKey_keyBitlen(this.cCtx);
     }
 
@@ -104,28 +104,28 @@ public class RsaPublicKey implements Key, Encrypt, Verify, PublicKey {
     /*
     * Calculate required buffer length to hold the encrypted data.
      */
-    public Integer encryptedLen(Integer dataLen) {
+    public int encryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.rsaPublicKey_encryptedLen(this.cCtx, dataLen);
     }
 
     /*
     * Verify data with given public key and signature.
      */
-    public Boolean verify(byte[] data, byte[] signature) {
+    public boolean verify(byte[] data, byte[] signature) {
         return FoundationJNI.INSTANCE.rsaPublicKey_verify(this.cCtx, data, signature);
     }
 
     /*
     * Defines whether a public key can be imported or not.
      */
-    public Boolean getCanImportPublicKey() {
+    public boolean getCanImportPublicKey() {
         return true;
     }
 
     /*
     * Define whether a public key can be exported or not.
      */
-    public Boolean getCanExportPublicKey() {
+    public boolean getCanExportPublicKey() {
         return true;
     }
 
@@ -143,7 +143,7 @@ public class RsaPublicKey implements Key, Encrypt, Verify, PublicKey {
     /*
     * Return length in bytes required to hold exported public key.
      */
-    public Integer exportedPublicKeyLen() {
+    public int exportedPublicKeyLen() {
         return FoundationJNI.INSTANCE.rsaPublicKey_exportedPublicKeyLen(this.cCtx);
     }
 

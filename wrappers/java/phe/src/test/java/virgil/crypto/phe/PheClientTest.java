@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.nio.charset.StandardCharsets;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +23,12 @@ public class PheClientTest {
 
 		this.server = new PheServer();
 		assertTrue("C context should be set", this.server.cCtx > 0);
+	}
+	
+	@After
+	public void teardown() {
+		this.client.close();
+		this.server.close();
 	}
 
 	@Test

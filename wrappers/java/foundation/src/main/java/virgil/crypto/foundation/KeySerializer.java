@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -48,7 +48,7 @@ public interface KeySerializer {
     *
     * Precondition: public key must be exportable.
      */
-    Integer serializedPublicKeyLen(PublicKey publicKey) ;
+    int serializedPublicKeyLen(PublicKey publicKey) ;
 
     /*
     * Serialize given public key to an interchangeable format.
@@ -62,7 +62,7 @@ public interface KeySerializer {
     *
     * Precondition: private key must be exportable.
      */
-    Integer serializedPrivateKeyLen(PrivateKey privateKey) ;
+    int serializedPrivateKeyLen(PrivateKey privateKey) ;
 
     /*
     * Serialize given private key to an interchangeable format.

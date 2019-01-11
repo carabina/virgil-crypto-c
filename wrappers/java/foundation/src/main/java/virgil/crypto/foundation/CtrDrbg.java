@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -65,14 +65,14 @@ public class CtrDrbg implements Defaults, Random {
     /*
     * The interval before reseed is performed by default.
      */
-    public Integer getReseedInterval() {
+    public int getReseedInterval() {
         return 10000;
     }
 
     /*
     * The amount of entropy used per seed by default.
      */
-    public Integer getEntropyLen() {
+    public int getEntropyLen() {
         return 48;
     }
 
@@ -94,7 +94,7 @@ public class CtrDrbg implements Defaults, Random {
     * Sets the reseed interval.
     * Default value is reseed interval.
      */
-    public void setReseedInterval(Integer interval) {
+    public void setReseedInterval(int interval) {
         FoundationJNI.INSTANCE.ctrDrbg_setReseedInterval(this.cCtx, interval);
     }
 
@@ -102,7 +102,7 @@ public class CtrDrbg implements Defaults, Random {
     * Sets the amount of entropy grabbed on each seed or reseed.
     * The default value is entropy len.
      */
-    public void setEntropyLen(Integer len) {
+    public void setEntropyLen(int len) {
         FoundationJNI.INSTANCE.ctrDrbg_setEntropyLen(this.cCtx, len);
     }
 
@@ -116,7 +116,7 @@ public class CtrDrbg implements Defaults, Random {
     /*
     * Generate random bytes.
      */
-    public byte[] random(Integer dataLen) {
+    public byte[] random(int dataLen) {
         return FoundationJNI.INSTANCE.ctrDrbg_random(this.cCtx, dataLen);
     }
 

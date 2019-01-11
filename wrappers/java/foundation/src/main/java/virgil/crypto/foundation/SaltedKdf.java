@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -47,6 +47,6 @@ public interface SaltedKdf {
     /*
     * Derive key of the requested length from the given data, salt and info.
      */
-    byte[] derive(byte[] data, byte[] salt, byte[] info, Integer keyLen) ;
+    byte[] derive(byte[] data, byte[] salt, byte[] info, int keyLen) ;
 }
 

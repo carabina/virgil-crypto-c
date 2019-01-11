@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -63,7 +63,7 @@ class ComputeSharedKeyProxy implements ComputeSharedKey {
     /*
     * Return number of bytes required to hold shared key.
      */
-    public Integer sharedKeyLen() {
+    public int sharedKeyLen() {
         return FoundationJNI.INSTANCE.computeSharedKey_sharedKeyLen(this.cCtx);
     }
 }

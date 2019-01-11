@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,7 +54,7 @@ class MacStreamProxy implements MacStream {
     /*
     * Size of the digest (mac output) in bytes.
      */
-    public Integer digestLen() {
+    public int digestLen() {
         return FoundationJNI.INSTANCE.macInfo_digestLen(this.cCtx);
     }
 

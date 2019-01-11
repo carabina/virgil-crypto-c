@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -74,14 +74,14 @@ public class Ed25519PrivateKey implements Key, GenerateKey, Sign, PrivateKey, Co
     /*
     * Length of the key in bytes.
      */
-    public Integer keyLen() {
+    public int keyLen() {
         return FoundationJNI.INSTANCE.ed25519PrivateKey_keyLen(this.cCtx);
     }
 
     /*
     * Length of the key in bits.
      */
-    public Integer keyBitlen() {
+    public int keyBitlen() {
         return FoundationJNI.INSTANCE.ed25519PrivateKey_keyBitlen(this.cCtx);
     }
 
@@ -103,21 +103,21 @@ public class Ed25519PrivateKey implements Key, GenerateKey, Sign, PrivateKey, Co
     /*
     * Return length in bytes required to hold signature.
      */
-    public Integer signatureLen() {
+    public int signatureLen() {
         return FoundationJNI.INSTANCE.ed25519PrivateKey_signatureLen(this.cCtx);
     }
 
     /*
     * Define whether a private key can be imported or not.
      */
-    public Boolean getCanImportPrivateKey() {
+    public boolean getCanImportPrivateKey() {
         return true;
     }
 
     /*
     * Define whether a private key can be exported or not.
      */
-    public Boolean getCanExportPrivateKey() {
+    public boolean getCanExportPrivateKey() {
         return true;
     }
 
@@ -142,7 +142,7 @@ public class Ed25519PrivateKey implements Key, GenerateKey, Sign, PrivateKey, Co
     /*
     * Return length in bytes required to hold exported private key.
      */
-    public Integer exportedPrivateKeyLen() {
+    public int exportedPrivateKeyLen() {
         return FoundationJNI.INSTANCE.ed25519PrivateKey_exportedPrivateKeyLen(this.cCtx);
     }
 
@@ -168,7 +168,7 @@ public class Ed25519PrivateKey implements Key, GenerateKey, Sign, PrivateKey, Co
     /*
     * Return number of bytes required to hold shared key.
      */
-    public Integer sharedKeyLen() {
+    public int sharedKeyLen() {
         return FoundationJNI.INSTANCE.ed25519PrivateKey_sharedKeyLen(this.cCtx);
     }
 }

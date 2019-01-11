@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -51,6 +51,6 @@ public interface Decrypt {
     /*
     * Calculate required buffer length to hold the decrypted data.
      */
-    Integer decryptedLen(Integer dataLen) ;
+    int decryptedLen(int dataLen) ;
 }
 

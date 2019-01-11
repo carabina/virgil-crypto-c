@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -70,35 +70,35 @@ public class Ed25519PublicKey implements Key, Verify, PublicKey {
     /*
     * Length of the key in bytes.
      */
-    public Integer keyLen() {
+    public int keyLen() {
         return FoundationJNI.INSTANCE.ed25519PublicKey_keyLen(this.cCtx);
     }
 
     /*
     * Length of the key in bits.
      */
-    public Integer keyBitlen() {
+    public int keyBitlen() {
         return FoundationJNI.INSTANCE.ed25519PublicKey_keyBitlen(this.cCtx);
     }
 
     /*
     * Verify data with given public key and signature.
      */
-    public Boolean verify(byte[] data, byte[] signature) {
+    public boolean verify(byte[] data, byte[] signature) {
         return FoundationJNI.INSTANCE.ed25519PublicKey_verify(this.cCtx, data, signature);
     }
 
     /*
     * Defines whether a public key can be imported or not.
      */
-    public Boolean getCanImportPublicKey() {
+    public boolean getCanImportPublicKey() {
         return true;
     }
 
     /*
     * Define whether a public key can be exported or not.
      */
-    public Boolean getCanExportPublicKey() {
+    public boolean getCanExportPublicKey() {
         return true;
     }
 
@@ -116,7 +116,7 @@ public class Ed25519PublicKey implements Key, Verify, PublicKey {
     /*
     * Return length in bytes required to hold exported public key.
      */
-    public Integer exportedPublicKeyLen() {
+    public int exportedPublicKeyLen() {
         return FoundationJNI.INSTANCE.ed25519PublicKey_exportedPublicKeyLen(this.cCtx);
     }
 

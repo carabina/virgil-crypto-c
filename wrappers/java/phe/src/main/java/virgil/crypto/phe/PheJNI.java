@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -52,37 +52,43 @@ public class PheJNI {
 
     public native long errorCtx_new() ;
 
+    public native void errorCtx_close(long cCtx) ;
+
     public native void errorCtx_reset(long cCtx) ;
 
     public native void errorCtx_error(long cCtx) ;
 
     public native long pheServer_new() ;
 
+    public native void pheServer_close(long cCtx) ;
+
     public native PheServerGenerateServerKeyPairResult pheServer_generateServerKeyPair(long cCtx) ;
 
-    public native Integer pheServer_enrollmentResponseLen(long cCtx) ;
+    public native int pheServer_enrollmentResponseLen(long cCtx) ;
 
     public native byte[] pheServer_getEnrollment(long cCtx, byte[] serverPrivateKey, byte[] serverPublicKey) ;
 
-    public native Integer pheServer_verifyPasswordResponseLen(long cCtx) ;
+    public native int pheServer_verifyPasswordResponseLen(long cCtx) ;
 
     public native byte[] pheServer_verifyPassword(long cCtx, byte[] serverPrivateKey, byte[] serverPublicKey, byte[] verifyPasswordRequest) ;
 
-    public native Integer pheServer_updateTokenLen(long cCtx) ;
+    public native int pheServer_updateTokenLen(long cCtx) ;
 
     public native PheServerRotateKeysResult pheServer_rotateKeys(long cCtx, byte[] serverPrivateKey) ;
 
     public native long pheClient_new() ;
 
+    public native void pheClient_close(long cCtx) ;
+
     public native void pheClient_setKeys(long cCtx, byte[] clientPrivateKey, byte[] serverPublicKey) ;
 
     public native byte[] pheClient_generateClientPrivateKey(long cCtx) ;
 
-    public native Integer pheClient_enrollmentRecordLen(long cCtx) ;
+    public native int pheClient_enrollmentRecordLen(long cCtx) ;
 
     public native PheClientEnrollAccountResult pheClient_enrollAccount(long cCtx, byte[] enrollmentResponse, byte[] password) ;
 
-    public native Integer pheClient_verifyPasswordRequestLen(long cCtx) ;
+    public native int pheClient_verifyPasswordRequestLen(long cCtx) ;
 
     public native byte[] pheClient_createVerifyPasswordRequest(long cCtx, byte[] password, byte[] enrollmentRecord) ;
 
@@ -91,5 +97,19 @@ public class PheJNI {
     public native PheClientRotateKeysResult pheClient_rotateKeys(long cCtx, byte[] updateToken) ;
 
     public native byte[] pheClient_updateEnrollmentRecord(long cCtx, byte[] enrollmentRecord, byte[] updateToken) ;
+
+    public native long pheCipher_new() ;
+
+    public native void pheCipher_close(long cCtx) ;
+
+    public native void pheCipher_setupDefaults(long cCtx) ;
+
+    public native int pheCipher_encryptLen(long cCtx, int plainTextLen) ;
+
+    public native int pheCipher_decryptLen(long cCtx, int cipherTextLen) ;
+
+    public native byte[] pheCipher_encrypt(long cCtx, byte[] plainText, byte[] accountKey) ;
+
+    public native byte[] pheCipher_decrypt(long cCtx, byte[] cipherText, byte[] accountKey) ;
 }
 

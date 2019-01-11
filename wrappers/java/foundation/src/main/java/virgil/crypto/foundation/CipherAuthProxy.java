@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -55,7 +55,7 @@ class CipherAuthProxy implements CipherAuth {
     /*
     * Defines authentication tag length in bytes.
      */
-    public Integer getAuthTagLen() {
+    public int getAuthTagLen() {
         return FoundationJNI.INSTANCE.cipherAuthInfo_getAuthTagLen(this.cCtx);
     }
 
@@ -70,7 +70,7 @@ class CipherAuthProxy implements CipherAuth {
     /*
     * Calculate required buffer length to hold the authenticated encrypted data.
      */
-    public Integer authEncryptedLen(Integer dataLen) {
+    public int authEncryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.authEncrypt_authEncryptedLen(this.cCtx, dataLen);
     }
 
@@ -85,7 +85,7 @@ class CipherAuthProxy implements CipherAuth {
     /*
     * Calculate required buffer length to hold the authenticated decrypted data.
      */
-    public Integer authDecryptedLen(Integer dataLen) {
+    public int authDecryptedLen(int dataLen) {
         return FoundationJNI.INSTANCE.authDecrypt_authDecryptedLen(this.cCtx, dataLen);
     }
 }

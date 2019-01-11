@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015-2018 Virgil Security Inc.
+* Copyright (C) 2015-2019 Virgil Security, Inc.
 *
 * All rights reserved.
 *
@@ -54,28 +54,28 @@ class CipherInfoProxy implements CipherInfo {
     /*
     * Cipher nfonce length or IV length in bytes, or 0 if nonce is not required.
      */
-    public Integer getNonceLen() {
+    public int getNonceLen() {
         return FoundationJNI.INSTANCE.cipherInfo_getNonceLen(this.cCtx);
     }
 
     /*
     * Cipher key length in bytes.
      */
-    public Integer getKeyLen() {
+    public int getKeyLen() {
         return FoundationJNI.INSTANCE.cipherInfo_getKeyLen(this.cCtx);
     }
 
     /*
     * Cipher key length in bits.
      */
-    public Integer getKeyBitlen() {
+    public int getKeyBitlen() {
         return FoundationJNI.INSTANCE.cipherInfo_getKeyBitlen(this.cCtx);
     }
 
     /*
     * Cipher block length in bytes.
      */
-    public Integer getBlockLen() {
+    public int getBlockLen() {
         return FoundationJNI.INSTANCE.cipherInfo_getBlockLen(this.cCtx);
     }
 }
