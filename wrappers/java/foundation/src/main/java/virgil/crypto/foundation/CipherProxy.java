@@ -120,5 +120,42 @@ class CipherProxy implements Cipher {
     public void setKey(byte[] key) {
         FoundationJNI.INSTANCE.cipher_setKey(this.cCtx, key);
     }
+
+    /*
+    * Start sequential encryption.
+     */
+    public void startEncryption() {
+        FoundationJNI.INSTANCE.cipher_startEncryption(this.cCtx);
+    }
+
+    /*
+    * Start sequential decryption.
+     */
+    public void startDecryption() {
+        FoundationJNI.INSTANCE.cipher_startDecryption(this.cCtx);
+    }
+
+    /*
+    * Process encryption or decryption of the given data chunk.
+     */
+    public byte[] update(byte[] data) {
+        return FoundationJNI.INSTANCE.cipher_update(this.cCtx, data);
+    }
+
+    /*
+    * Return buffer length required to hold an output of the methods
+    * "update" or "finish".
+    * Pass zero length to define buffer length of the method "finish".
+     */
+    public int outLen(int dataLen) {
+        return FoundationJNI.INSTANCE.cipher_outLen(this.cCtx, dataLen);
+    }
+
+    /*
+    * Accomplish encryption or decryption process.
+     */
+    public byte[] finish() {
+        return FoundationJNI.INSTANCE.cipher_finish(this.cCtx);
+    }
 }
 

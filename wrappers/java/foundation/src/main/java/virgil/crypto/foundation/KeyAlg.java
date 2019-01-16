@@ -45,7 +45,8 @@ public enum KeyAlg {
 
     NONE(0),
     RSA(1),
-    ED25519(2);
+    ED25519(2),
+    X25519(3);
 
     private final int code;
 

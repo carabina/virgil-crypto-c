@@ -39,43 +39,43 @@ package virgil.crypto.foundation;
 import virgil.crypto.common.*;
 
 /*
-* Provide conversion logic between OID and algorithm tags.
+* Provide implementation of der deserializer of algorithm information
  */
-public class Oid {
+public class AlgInfoDerDeserializer implements Defaults, AlgInfoDeserializer {
 
-    /*
-    * Return OID for given key algorithm.
-     */
-    public byte[] fromKeyAlg(KeyAlg keyAlg) {
-        return FoundationJNI.INSTANCE.oid_fromKeyAlg(keyAlg);
+    public long cCtx;
+
+    /* Create underlying C context. */
+    public AlgInfoDerDeserializer() {
+        super();
+        this.cCtx = FoundationJNI.INSTANCE.algInfoDerDeserializer_new();
     }
 
     /*
-    * Return OID for given algorithm identifier
-     */
-    public byte[] fromAlgId(AlgId algId) {
-        return FoundationJNI.INSTANCE.oid_fromAlgId(algId);
+    * Acquire C context.
+    * Note. This method is used in generated code only, and SHOULD NOT be used in another way.
+    */
+    public AlgInfoDerDeserializer(long cCtx) {
+        super();
+        this.cCtx = cCtx;
+    }
+
+    public void setAsn1Reader(Asn1Reader asn1Reader) {
+        /* Java code */
     }
 
     /*
-    * Return key algorithm for given OID.
+    * Setup predefined values to the uninitialized class dependencies.
      */
-    public KeyAlg toKeyAlg(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toKeyAlg(oid);
+    public void setupDefaults() {
+        FoundationJNI.INSTANCE.algInfoDerDeserializer_setupDefaults(this.cCtx);
     }
 
     /*
-    * Return algorithm identifier for given OID.
+    * Algorithm deserialization algorithm from data
      */
-    public AlgId toAlgId(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toAlgId(oid);
-    }
-
-    /*
-    * Return true if given OIDs are equal.
-     */
-    public boolean equal(byte[] lhs, byte[] rhs) {
-        return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
+    public AlgInfo deserialize(byte[] data) {
+        return FoundationJNI.INSTANCE.algInfoDerDeserializer_deserialize(this.cCtx, data);
     }
 }
 

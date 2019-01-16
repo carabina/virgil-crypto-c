@@ -1671,6 +1671,10 @@ endfunction
 function java_create_enum_module (enum, destination, wrapper, meta)
     check_arguments (my, "enum, destination, wrapper, meta", my)
 
+    if my.enum.name = "error"
+        java_create_exception_module (my.enum, my.destination, my.wrapper, my.meta)
+    else
+
     echo_info ("Create <java_module/> from enum: '$(my.enum.name:)'", my)
 
     assert_attribute (my.enum, "name", my)
@@ -1703,6 +1707,7 @@ function java_create_enum_module (enum, destination, wrapper, meta)
     endnew
 
     echo_debug ("Done", my)
+    endif
 endfunction
 
 # ---------------------------------------------------------------------------
@@ -1737,8 +1742,72 @@ function java_create_exception_module (enum, destination, wrapper, meta)
             java_map_attr_visibility (java_class, my.enum)
             java_map_attr_scope (java_class, my.enum)
 
-            #TODO handle error
-            java_map_enum_default (java_class, my.enum, my.wrapper, my.meta)
+            new java_extend to java_class
+                .type = "RuntimeException"
+            endnew
+
+            for my.enum.constant
+                if defined(constant.value)
+                    my.the_value = constant.value
+                elsif defined(my.last_value)
+                    my.the_value = my.last_value + 1
+                else
+                    my.the_value = 0
+                endif
+                my.last_value = my.the_value
+
+                new java_field to java_class
+                    . = java_format_description (constant) ?
+                    .name = java_derive_constant_name (constant, my.wrapper)
+                    .type = java_derive_constant_type (constant, my.wrapper)
+                    .value = my.the_value
+                    .access = "readonly"
+                    .visibility = "public"
+                    .static = "static"
+                    .final = "final"
+                endnew
+            endfor
+
+            new java_field to java_class
+                . = java_format_description (constant) ?
+                .name = "errorCode"
+                .type = "int"
+                .visibility = "private"
+            endnew
+            
+            new java_constructor to java_class
+                . = "/* Create new instance. */"
+                .visibility = "public"
+
+                new java_argument to java_constructor
+                    .name = "errorCode"
+                    .type = "int"
+                endnew
+
+                new java_code
+                    . = "
+                    super();
+                    this.errorCode = errorCode;"
+                endnew
+            endnew
+
+            new java_method to java_class
+                . = ""
+                .name = java_derive_getter_name_str ("errorCode")
+                .throws = "0"
+                .visibility = "public"
+
+                new java_code to java_method
+                    . = "return this.errorCode;"
+                endnew
+
+                new java_return to java_method
+                    .type = "int"
+                    .access = "readonly"
+                    .is_enum = "0"
+                    .is_reference = "0"
+                endnew
+            endnew
         endnew
     endnew
 
@@ -1967,8 +2036,7 @@ function java_create_implementation_module (implementation, destination, wrapper
 
                 if my.implementation.lifecycle <> "none"
                     for my.implementation.constructor where 0.declaration = "public" & 0.visibility = "public"
-                        java_create_class_constructor (\
-                            my.implementation, constructor, java_class, my.wrapper, my.meta)
+                        #java_create_class_constructor (my.implementation, constructor, java_class, my.wrapper, my.meta)
                     endfor
                 endif
             endif

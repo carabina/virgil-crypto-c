@@ -41,7 +41,7 @@ import virgil.crypto.common.*;
 /*
 * Virgil Security implementation of the KDF1 (ISO-18033-2) algorithm.
  */
-public class Kdf1 implements Kdf {
+public class Kdf1 implements Kdf, AlgInfoCompatible {
 
     public long cCtx;
 
@@ -69,6 +69,13 @@ public class Kdf1 implements Kdf {
      */
     public byte[] derive(byte[] data, int keyLen) {
         return FoundationJNI.INSTANCE.kdf1_derive(this.cCtx, data, keyLen);
+    }
+
+    /*
+    * Produce algorithm information structure
+     */
+    public AlgInfo produceAlgInfo() {
+        return FoundationJNI.INSTANCE.kdf1_produceAlgInfo(this.cCtx);
     }
 }
 

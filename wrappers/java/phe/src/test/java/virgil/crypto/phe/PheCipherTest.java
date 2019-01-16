@@ -2,6 +2,7 @@ package virgil.crypto.phe;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.nio.charset.StandardCharsets;
 
@@ -36,6 +37,22 @@ public class PheCipherTest {
 		byte[] decryptedData = this.cipher.decrypt(encryptedData, accountKey);
 
 		assertArrayEquals(plainText, decryptedData);
+	}
+
+	@Test
+	public void testFullFlowWrongKeyShouldFail() {
+		byte[] plainText = "plain text".getBytes(StandardCharsets.UTF_8);
+		byte[] accountKey = "Gjg-Ap7Qa5BjpuZ22FhZsairw^ZS5KjC".getBytes(StandardCharsets.UTF_8);
+		byte[] wrongAccountKey = "Gjg-Ap7Qa5BjpuZ22FhZsairw^ZS5KjD".getBytes(StandardCharsets.UTF_8);
+
+		this.cipher.setupDefaults();
+		byte[] encryptedData = this.cipher.encrypt(plainText, accountKey);
+		try {
+			this.cipher.decrypt(encryptedData, wrongAccountKey);
+			fail();
+		} catch (PheException e) {
+			assertEquals(PheException.AES_ERROR, e.getErrorCode());
+		}
 	}
 
 }

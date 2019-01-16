@@ -133,6 +133,43 @@ public class Aes256Gcm implements Encrypt, Decrypt, CipherInfo, Cipher, CipherAu
     }
 
     /*
+    * Start sequential encryption.
+     */
+    public void startEncryption() {
+        FoundationJNI.INSTANCE.aes256Gcm_startEncryption(this.cCtx);
+    }
+
+    /*
+    * Start sequential decryption.
+     */
+    public void startDecryption() {
+        FoundationJNI.INSTANCE.aes256Gcm_startDecryption(this.cCtx);
+    }
+
+    /*
+    * Process encryption or decryption of the given data chunk.
+     */
+    public byte[] update(byte[] data) {
+        return FoundationJNI.INSTANCE.aes256Gcm_update(this.cCtx, data);
+    }
+
+    /*
+    * Return buffer length required to hold an output of the methods
+    * "update" or "finish".
+    * Pass zero length to define buffer length of the method "finish".
+     */
+    public int outLen(int dataLen) {
+        return FoundationJNI.INSTANCE.aes256Gcm_outLen(this.cCtx, dataLen);
+    }
+
+    /*
+    * Accomplish encryption or decryption process.
+     */
+    public byte[] finish() {
+        return FoundationJNI.INSTANCE.aes256Gcm_finish(this.cCtx);
+    }
+
+    /*
     * Defines authentication tag length in bytes.
      */
     public int getAuthTagLen() {

@@ -39,43 +39,50 @@ package virgil.crypto.foundation;
 import virgil.crypto.common.*;
 
 /*
-* Provide conversion logic between OID and algorithm tags.
+* Provide implementation of der serializer of algorithm information
  */
-public class Oid {
+public class AlgInfoDerSerializer implements Defaults, AlgInfoSerializer {
 
-    /*
-    * Return OID for given key algorithm.
-     */
-    public byte[] fromKeyAlg(KeyAlg keyAlg) {
-        return FoundationJNI.INSTANCE.oid_fromKeyAlg(keyAlg);
+    public long cCtx;
+
+    /* Create underlying C context. */
+    public AlgInfoDerSerializer() {
+        super();
+        this.cCtx = FoundationJNI.INSTANCE.algInfoDerSerializer_new();
     }
 
     /*
-    * Return OID for given algorithm identifier
-     */
-    public byte[] fromAlgId(AlgId algId) {
-        return FoundationJNI.INSTANCE.oid_fromAlgId(algId);
+    * Acquire C context.
+    * Note. This method is used in generated code only, and SHOULD NOT be used in another way.
+    */
+    public AlgInfoDerSerializer(long cCtx) {
+        super();
+        this.cCtx = cCtx;
+    }
+
+    public void setAsn1Writer(Asn1Writer asn1Writer) {
+        /* Java code */
     }
 
     /*
-    * Return key algorithm for given OID.
+    * Setup predefined values to the uninitialized class dependencies.
      */
-    public KeyAlg toKeyAlg(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toKeyAlg(oid);
+    public void setupDefaults() {
+        FoundationJNI.INSTANCE.algInfoDerSerializer_setupDefaults(this.cCtx);
     }
 
     /*
-    * Return algorithm identifier for given OID.
+    * Return buffer size enough to hold serialized algorithm
      */
-    public AlgId toAlgId(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toAlgId(oid);
+    public int serializeLen(AlgInfo algInfo) {
+        return FoundationJNI.INSTANCE.algInfoDerSerializer_serializeLen(this.cCtx, algInfo);
     }
 
     /*
-    * Return true if given OIDs are equal.
+    * Serialize algorithm info to buffer class
      */
-    public boolean equal(byte[] lhs, byte[] rhs) {
-        return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
+    public byte[] serialize(AlgInfo algInfo) {
+        return FoundationJNI.INSTANCE.algInfoDerSerializer_serialize(this.cCtx, algInfo);
     }
 }
 

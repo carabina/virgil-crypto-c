@@ -39,43 +39,26 @@ package virgil.crypto.foundation;
 import virgil.crypto.common.*;
 
 /*
-* Provide conversion logic between OID and algorithm tags.
+* Define implemented algorithm identificator.
  */
-public class Oid {
+public enum AlgId {
 
-    /*
-    * Return OID for given key algorithm.
-     */
-    public byte[] fromKeyAlg(KeyAlg keyAlg) {
-        return FoundationJNI.INSTANCE.oid_fromKeyAlg(keyAlg);
+    NONE(0),
+    SHA224(1),
+    SHA256(2),
+    SHA384(3),
+    SHA512(4),
+    KDF1(5),
+    KDF2(6);
+
+    private final int code;
+
+    private AlgId(int code) {
+        this.code = code;
     }
 
-    /*
-    * Return OID for given algorithm identifier
-     */
-    public byte[] fromAlgId(AlgId algId) {
-        return FoundationJNI.INSTANCE.oid_fromAlgId(algId);
-    }
-
-    /*
-    * Return key algorithm for given OID.
-     */
-    public KeyAlg toKeyAlg(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toKeyAlg(oid);
-    }
-
-    /*
-    * Return algorithm identifier for given OID.
-     */
-    public AlgId toAlgId(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toAlgId(oid);
-    }
-
-    /*
-    * Return true if given OIDs are equal.
-     */
-    public boolean equal(byte[] lhs, byte[] rhs) {
-        return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
+    public int getCode() {
+        return code;
     }
 }
 

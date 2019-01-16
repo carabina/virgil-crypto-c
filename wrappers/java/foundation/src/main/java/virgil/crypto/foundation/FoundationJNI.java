@@ -68,7 +68,11 @@ public class FoundationJNI {
 
     public native byte[] oid_fromKeyAlg(KeyAlg keyAlg) ;
 
+    public native byte[] oid_fromAlgId(AlgId algId) ;
+
     public native KeyAlg oid_toKeyAlg(byte[] oid) ;
+
+    public native AlgId oid_toAlgId(byte[] oid) ;
 
     public native boolean oid_equal(byte[] lhs, byte[] rhs) ;
 
@@ -123,6 +127,16 @@ public class FoundationJNI {
     public native void cipher_setNonce(long cCtx, byte[] nonce) ;
 
     public native void cipher_setKey(long cCtx, byte[] key) ;
+
+    public native void cipher_startEncryption(long cCtx) ;
+
+    public native void cipher_startDecryption(long cCtx) ;
+
+    public native byte[] cipher_update(long cCtx, byte[] data) ;
+
+    public native int cipher_outLen(long cCtx, int dataLen) ;
+
+    public native byte[] cipher_finish(long cCtx) ;
 
     /*
     * Defines authentication tag length in bytes.
@@ -343,6 +357,16 @@ public class FoundationJNI {
 
     public native int asn1Writer_writeSet(long cCtx, int len) ;
 
+    public native AlgId algInfo_algId(long cCtx) ;
+
+    public native AlgInfo algInfoCompatible_produceAlgInfo(long cCtx) ;
+
+    public native int algInfoSerializer_serializeLen(long cCtx, AlgInfo algInfo) ;
+
+    public native byte[] algInfoSerializer_serialize(long cCtx, AlgInfo algInfo) ;
+
+    public native AlgInfo algInfoDeserializer_deserialize(long cCtx, byte[] data) ;
+
     public native long sha224_new() ;
 
     public native HashAlg sha224_alg(long cCtx) ;
@@ -366,6 +390,8 @@ public class FoundationJNI {
     public native void sha256_update(long cCtx, byte[] data) ;
 
     public native byte[] sha256_finish(long cCtx) ;
+
+    public native AlgInfo sha256_produceAlgInfo(long cCtx) ;
 
     public native long sha384_new() ;
 
@@ -404,6 +430,16 @@ public class FoundationJNI {
     public native void aes256Gcm_setNonce(long cCtx, byte[] nonce) ;
 
     public native void aes256Gcm_setKey(long cCtx, byte[] key) ;
+
+    public native void aes256Gcm_startEncryption(long cCtx) ;
+
+    public native void aes256Gcm_startDecryption(long cCtx) ;
+
+    public native byte[] aes256Gcm_update(long cCtx, byte[] data) ;
+
+    public native int aes256Gcm_outLen(long cCtx, int dataLen) ;
+
+    public native byte[] aes256Gcm_finish(long cCtx) ;
 
     public native AuthEncryptAuthEncryptResult aes256Gcm_authEncrypt(long cCtx, byte[] data, byte[] authData) ;
 
@@ -609,6 +645,8 @@ public class FoundationJNI {
 
     public native byte[] kdf1_derive(long cCtx, byte[] data, int keyLen) ;
 
+    public native AlgInfo kdf1_produceAlgInfo(long cCtx) ;
+
     public native long kdf2_new() ;
 
     public native byte[] kdf2_derive(long cCtx, byte[] data, int keyLen) ;
@@ -708,5 +746,27 @@ public class FoundationJNI {
     public native byte[] ed25519PrivateKey_computeSharedKey(long cCtx, PublicKey publicKey) ;
 
     public native int ed25519PrivateKey_sharedKeyLen(long cCtx) ;
+
+    public native long algInfoDerSerializer_new() ;
+
+    public native void algInfoDerSerializer_setupDefaults(long cCtx) ;
+
+    public native int algInfoDerSerializer_serializeLen(long cCtx, AlgInfo algInfo) ;
+
+    public native byte[] algInfoDerSerializer_serialize(long cCtx, AlgInfo algInfo) ;
+
+    public native long algInfoDerDeserializer_new() ;
+
+    public native void algInfoDerDeserializer_setupDefaults(long cCtx) ;
+
+    public native AlgInfo algInfoDerDeserializer_deserialize(long cCtx, byte[] data) ;
+
+    public native long simpleAlgInfo_new() ;
+
+    public native AlgId simpleAlgInfo_algId(long cCtx) ;
+
+    public native long kdfAlgInfo_new() ;
+
+    public native AlgId kdfAlgInfo_algId(long cCtx) ;
 }
 

@@ -41,7 +41,7 @@ import virgil.crypto.common.*;
 /*
 * This is MbedTLS implementation of SHA256.
  */
-public class Sha256 implements HashInfo, Hash, HashStream {
+public class Sha256 implements HashInfo, Hash, HashStream, AlgInfoCompatible {
 
     public long cCtx;
 
@@ -107,6 +107,13 @@ public class Sha256 implements HashInfo, Hash, HashStream {
      */
     public byte[] finish() {
         return FoundationJNI.INSTANCE.sha256_finish(this.cCtx);
+    }
+
+    /*
+    * Produce algorithm information structure
+     */
+    public AlgInfo produceAlgInfo() {
+        return FoundationJNI.INSTANCE.sha256_produceAlgInfo(this.cCtx);
     }
 }
 

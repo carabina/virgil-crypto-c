@@ -39,43 +39,32 @@ package virgil.crypto.foundation;
 import virgil.crypto.common.*;
 
 /*
-* Provide conversion logic between OID and algorithm tags.
+* Provide KDF algorithm information implementation
  */
-public class Oid {
+public class KdfAlgInfo implements AlgInfo {
 
-    /*
-    * Return OID for given key algorithm.
-     */
-    public byte[] fromKeyAlg(KeyAlg keyAlg) {
-        return FoundationJNI.INSTANCE.oid_fromKeyAlg(keyAlg);
+    public long cCtx;
+
+    /* Create underlying C context. */
+    public KdfAlgInfo() {
+        super();
+        this.cCtx = FoundationJNI.INSTANCE.kdfAlgInfo_new();
     }
 
     /*
-    * Return OID for given algorithm identifier
-     */
-    public byte[] fromAlgId(AlgId algId) {
-        return FoundationJNI.INSTANCE.oid_fromAlgId(algId);
+    * Acquire C context.
+    * Note. This method is used in generated code only, and SHOULD NOT be used in another way.
+    */
+    public KdfAlgInfo(long cCtx) {
+        super();
+        this.cCtx = cCtx;
     }
 
     /*
-    * Return key algorithm for given OID.
+    * Provide algorithm identificator
      */
-    public KeyAlg toKeyAlg(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toKeyAlg(oid);
-    }
-
-    /*
-    * Return algorithm identifier for given OID.
-     */
-    public AlgId toAlgId(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toAlgId(oid);
-    }
-
-    /*
-    * Return true if given OIDs are equal.
-     */
-    public boolean equal(byte[] lhs, byte[] rhs) {
-        return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
+    public AlgId algId() {
+        return FoundationJNI.INSTANCE.kdfAlgInfo_algId(this.cCtx);
     }
 }
 

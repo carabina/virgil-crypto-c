@@ -131,9 +131,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1getEnrollm
   
   vsce_error_t status = vsce_phe_server_get_enrollment(c_ctx, server_private_key, server_public_key, enrollment_response);
 
-  //TODO Handle error
-  if(status != vsce_SUCCESS) {
-    return NULL;
+  if (status != vsce_SUCCESS) {
+    throwPheException(jenv, status);
   }
   
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(enrollment_response));
@@ -180,9 +179,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1verifyPass
 
   vsce_error_t status = vsce_phe_server_verify_password(c_ctx, server_private_key, server_public_key, verify_password_request, verify_password_response);
 
-  //TODO Handle error
-  if(status != vsce_SUCCESS) {
-    return NULL;
+  if (status != vsce_SUCCESS) {
+    throwPheException(jenv, status);
   }
   
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(verify_password_response));
@@ -222,10 +220,9 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheServer_1rotateKeys
   vsc_buffer_t *update_token = vsc_buffer_new_with_capacity(vsce_phe_server_update_token_len(c_ctx));
 
   vsce_error_t status = vsce_phe_server_rotate_keys(c_ctx, server_private_key, new_server_private_key, new_server_public_key, update_token);
-  
-  //TODO Handle error
-  if(status != vsce_SUCCESS) {
-    return NULL;
+
+  if (status != vsce_SUCCESS) {
+    throwPheException(jenv, status);
   }
 
   // Create result class
@@ -314,9 +311,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1generateCl
 
   vsce_error_t status = vsce_phe_client_generate_client_private_key(c_ctx, client_private_key);
 
-  //TODO  Handle error
-  if(status != vsce_SUCCESS) {
-    return NULL;
+  if (status != vsce_SUCCESS) {
+    throwPheException(jenv, status);
   }
 
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(client_private_key));
@@ -360,9 +356,8 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1enrollAccount
 
   vsce_error_t status = vsce_phe_client_enroll_account(c_ctx, enrollment_response, password, enrollment_record, account_key);
 
-  //TODO Handle error
-  if(status != vsce_SUCCESS) {
-    return NULL;
+  if (status != vsce_SUCCESS) {
+    throwPheException(jenv, status);
   }
   
   // Create result class
@@ -424,9 +419,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1createVeri
 
   vsce_error_t status = vsce_phe_client_create_verify_password_request(c_ctx, password, enrollment_record, verify_password_request);
 
-  //TODO Handle error
-  if(status != vsce_SUCCESS) {
-    return NULL;
+  if (status != vsce_SUCCESS) {
+    throwPheException(jenv, status);
   }
 
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(verify_password_request));
@@ -462,9 +456,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1checkRespo
 
   vsce_error_t status = vsce_phe_client_check_response_and_decrypt(c_ctx, password, enrollment_record, verify_password_response, account_key);
 
-  //TODO Handle error
-  if(status != vsce_SUCCESS) {
-    return NULL;
+  if (status != vsce_SUCCESS) {
+    throwPheException(jenv, status);
   }
   
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(account_key));
@@ -492,10 +485,9 @@ JNIEXPORT jobject JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1rotateKeys
   vsc_buffer_t *new_server_public_key = vsc_buffer_new_with_capacity(vsce_phe_common_PHE_PUBLIC_KEY_LENGTH);
 
   vsce_error_t status = vsce_phe_client_rotate_keys(c_ctx, update_token, new_client_private_key, new_server_public_key);
-  
-  //TODO Handle error
+
   if(status != vsce_SUCCESS) {
-    return NULL;
+    throwPheException(jenv, status);
   }
 
   // Create result class
@@ -546,9 +538,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheClient_1updateEnro
 
   vsce_error_t status = vsce_phe_client_update_enrollment_record(c_ctx, enrollment_record, update_token, new_enrollment_record);
 
-  //TODO Handle error
   if(status != vsce_SUCCESS) {
-    return NULL;
+    throwPheException(jenv, status);
   }
   
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(new_enrollment_record));
@@ -635,9 +626,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1encrypt
 
   vsce_error_t status = vsce_phe_cipher_encrypt(c_ctx, plain_text, account_key, cipher_text);
 
-  //TODO Handle error
   if(status != vsce_SUCCESS) {
-    return NULL;
+    throwPheException(jenv, status);
   }
   
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(cipher_text));
@@ -669,9 +659,8 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1decrypt
 
   vsce_error_t status = vsce_phe_cipher_decrypt(c_ctx, cipher_text, account_key, plain_text);
 
-  //TODO Handle error
   if(status != vsce_SUCCESS) {
-    return NULL;
+    throwPheException(jenv, status);
   }
   
   jbyteArray ret = (*jenv)->NewByteArray(jenv, vsc_buffer_len(plain_text));
@@ -681,4 +670,23 @@ JNIEXPORT jbyteArray JNICALL Java_virgil_crypto_phe_PheJNI_pheCipher_1decrypt
   vsc_buffer_delete(plain_text);
 
   return ret;
+}
+
+jint throwPheException (JNIEnv *jenv, jint errorCode ) {
+  jclass cls = (*jenv)->FindClass(jenv, "virgil/crypto/phe/PheException");
+  if (NULL == cls) {
+    printf("Class PheException not found.\n");
+    return 0;
+  }
+  jmethodID methodID = (*jenv)->GetMethodID(jenv, cls, "<init>", "(I)V");
+  if (NULL == methodID) {
+	  printf("Class virgil/crypto/phe/PheException has no constructor.\n");
+	  return 0;
+  }
+  jthrowable obj = (*jenv)->NewObject(jenv, cls, methodID, errorCode);
+  if (NULL == obj) {
+	  printf("Can't instantiate virgil/crypto/phe/PheException.\n");
+	  return 0;
+  }
+  return (*jenv)->Throw(jenv, obj);
 }

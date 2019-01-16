@@ -34,48 +34,40 @@
 * Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
  */
 
-package virgil.crypto.foundation;
+package virgil.crypto.phe;
 
 import virgil.crypto.common.*;
 
-/*
-* Provide conversion logic between OID and algorithm tags.
- */
-public class Oid {
+import virgil.crypto.foundation.*;
 
-    /*
-    * Return OID for given key algorithm.
-     */
-    public byte[] fromKeyAlg(KeyAlg keyAlg) {
-        return FoundationJNI.INSTANCE.oid_fromKeyAlg(keyAlg);
+public class PheException extends RuntimeException {
+
+    public static final int SUCCESS = 0;
+
+    public static final int INVALID_SUCCESS_PROOF = 1;
+
+    public static final int INVALID_FAIL_PROOF = 2;
+
+    public static final int RNG_ERROR = 3;
+
+    public static final int PROTOBUF_DECODE_ERROR = 4;
+
+    public static final int INVALID_ECP = 5;
+
+    public static final int INVALID_PRIVATE_KEY = 6;
+
+    public static final int AES_ERROR = 7;
+
+    private int errorCode;
+
+    /* Create new instance. */
+    public PheException(int errorCode) {
+        super();
+        this.errorCode = errorCode;
     }
 
-    /*
-    * Return OID for given algorithm identifier
-     */
-    public byte[] fromAlgId(AlgId algId) {
-        return FoundationJNI.INSTANCE.oid_fromAlgId(algId);
-    }
-
-    /*
-    * Return key algorithm for given OID.
-     */
-    public KeyAlg toKeyAlg(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toKeyAlg(oid);
-    }
-
-    /*
-    * Return algorithm identifier for given OID.
-     */
-    public AlgId toAlgId(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toAlgId(oid);
-    }
-
-    /*
-    * Return true if given OIDs are equal.
-     */
-    public boolean equal(byte[] lhs, byte[] rhs) {
-        return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
+    public int getErrorCode() {
+        return this.errorCode;
     }
 }
 

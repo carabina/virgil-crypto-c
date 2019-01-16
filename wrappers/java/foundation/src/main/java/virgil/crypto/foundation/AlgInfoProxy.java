@@ -39,43 +39,23 @@ package virgil.crypto.foundation;
 import virgil.crypto.common.*;
 
 /*
-* Provide conversion logic between OID and algorithm tags.
+* Provide details about implemented algorithms.
  */
-public class Oid {
+class AlgInfoProxy implements AlgInfo {
 
-    /*
-    * Return OID for given key algorithm.
-     */
-    public byte[] fromKeyAlg(KeyAlg keyAlg) {
-        return FoundationJNI.INSTANCE.oid_fromKeyAlg(keyAlg);
+    public long cCtx;
+
+    /* Take C context that implements this interface */
+    public AlgInfoProxy(long cCtx) {
+        super();
+        this.cCtx = cCtx;
     }
 
     /*
-    * Return OID for given algorithm identifier
+    * Provide algorithm identificator
      */
-    public byte[] fromAlgId(AlgId algId) {
-        return FoundationJNI.INSTANCE.oid_fromAlgId(algId);
-    }
-
-    /*
-    * Return key algorithm for given OID.
-     */
-    public KeyAlg toKeyAlg(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toKeyAlg(oid);
-    }
-
-    /*
-    * Return algorithm identifier for given OID.
-     */
-    public AlgId toAlgId(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toAlgId(oid);
-    }
-
-    /*
-    * Return true if given OIDs are equal.
-     */
-    public boolean equal(byte[] lhs, byte[] rhs) {
-        return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
+    public AlgId algId() {
+        return FoundationJNI.INSTANCE.algInfo_algId(this.cCtx);
     }
 }
 

@@ -39,43 +39,30 @@ package virgil.crypto.foundation;
 import virgil.crypto.common.*;
 
 /*
-* Provide conversion logic between OID and algorithm tags.
+* Provide serialization of algorithm
  */
-public class Oid {
+class AlgInfoSerializerProxy implements AlgInfoSerializer {
 
-    /*
-    * Return OID for given key algorithm.
-     */
-    public byte[] fromKeyAlg(KeyAlg keyAlg) {
-        return FoundationJNI.INSTANCE.oid_fromKeyAlg(keyAlg);
+    public long cCtx;
+
+    /* Take C context that implements this interface */
+    public AlgInfoSerializerProxy(long cCtx) {
+        super();
+        this.cCtx = cCtx;
     }
 
     /*
-    * Return OID for given algorithm identifier
+    * Return buffer size enough to hold serialized algorithm
      */
-    public byte[] fromAlgId(AlgId algId) {
-        return FoundationJNI.INSTANCE.oid_fromAlgId(algId);
+    public int serializeLen(AlgInfo algInfo) {
+        return FoundationJNI.INSTANCE.algInfoSerializer_serializeLen(this.cCtx, algInfo);
     }
 
     /*
-    * Return key algorithm for given OID.
+    * Serialize algorithm info to buffer class
      */
-    public KeyAlg toKeyAlg(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toKeyAlg(oid);
-    }
-
-    /*
-    * Return algorithm identifier for given OID.
-     */
-    public AlgId toAlgId(byte[] oid) {
-        return FoundationJNI.INSTANCE.oid_toAlgId(oid);
-    }
-
-    /*
-    * Return true if given OIDs are equal.
-     */
-    public boolean equal(byte[] lhs, byte[] rhs) {
-        return FoundationJNI.INSTANCE.oid_equal(lhs, rhs);
+    public byte[] serialize(AlgInfo algInfo) {
+        return FoundationJNI.INSTANCE.algInfoSerializer_serialize(this.cCtx, algInfo);
     }
 }
 

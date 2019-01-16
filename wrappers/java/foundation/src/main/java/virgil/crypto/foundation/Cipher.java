@@ -52,5 +52,32 @@ public interface Cipher extends Encrypt, Decrypt, CipherInfo {
     * Set cipher encryption / decryption key.
      */
     void setKey(byte[] key) ;
+
+    /*
+    * Start sequential encryption.
+     */
+    void startEncryption() ;
+
+    /*
+    * Start sequential decryption.
+     */
+    void startDecryption() ;
+
+    /*
+    * Process encryption or decryption of the given data chunk.
+     */
+    byte[] update(byte[] data) ;
+
+    /*
+    * Return buffer length required to hold an output of the methods
+    * "update" or "finish".
+    * Pass zero length to define buffer length of the method "finish".
+     */
+    int outLen(int dataLen) ;
+
+    /*
+    * Accomplish encryption or decryption process.
+     */
+    byte[] finish() ;
 }
 
